@@ -8,23 +8,27 @@ public class StartSceneButtons : MonoBehaviour
 {
 
     public Button newGameButton;
+    public Button startGameButton;
     public Button highscoreButton;
     public Button controlsButton;
     public Button exitButton;
     public Button backButton;
 
     public GameObject menuButtons;
+    public GameObject levelSelection;
     public GameObject highscoreMenu;
     public GameObject controlsMenu;
 
 	void Start () {
 
         menuButtons.gameObject.SetActive(true);
+        levelSelection.gameObject.SetActive(false);
         highscoreMenu.gameObject.SetActive(false);
         controlsMenu.gameObject.SetActive(false);
         backButton.gameObject.SetActive(false);
 
-        newGameButton.onClick.AddListener(StartNewGame);
+        newGameButton.onClick.AddListener(ChooseLevel);
+        startGameButton.onClick.AddListener(StartNewGame);
         highscoreButton.onClick.AddListener(OpenHighScore);
         controlsButton.onClick.AddListener(OpenControls);
         exitButton.onClick.AddListener(ExitGame);
@@ -32,8 +36,17 @@ public class StartSceneButtons : MonoBehaviour
 	}
 	
 	void Update () {
-		
+	
 	}
+
+    void ChooseLevel()
+    {
+        menuButtons.gameObject.SetActive(false);
+        levelSelection.gameObject.SetActive(true);
+        highscoreMenu.gameObject.SetActive(false);
+        controlsMenu.gameObject.SetActive(false);
+        backButton.gameObject.SetActive(true);
+    }
 
     void StartNewGame()
     {
@@ -43,6 +56,7 @@ public class StartSceneButtons : MonoBehaviour
     void OpenHighScore()
     {
         menuButtons.gameObject.SetActive(false);
+        levelSelection.gameObject.SetActive(false);
         highscoreMenu.gameObject.SetActive(true);
         controlsMenu.gameObject.SetActive(false);
         backButton.gameObject.SetActive(true);
@@ -51,6 +65,7 @@ public class StartSceneButtons : MonoBehaviour
     void OpenControls()
     {
         menuButtons.gameObject.SetActive(false);
+        levelSelection.gameObject.SetActive(false);
         highscoreMenu.gameObject.SetActive(false);
         controlsMenu.gameObject.SetActive(true);
         backButton.gameObject.SetActive(true);
@@ -59,6 +74,7 @@ public class StartSceneButtons : MonoBehaviour
     void BackToMenu()
     {
         menuButtons.gameObject.SetActive(true);
+        levelSelection.gameObject.SetActive(false);
         highscoreMenu.gameObject.SetActive(false);
         controlsMenu.gameObject.SetActive(false);
         backButton.gameObject.SetActive(false);
