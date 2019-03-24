@@ -8,7 +8,6 @@ public class StartSceneButtons : MonoBehaviour
 {
 
     public Button newGameButton;
-    public Button startGameButton;
     public Button highscoreButton;
     public Button controlsButton;
     public Button exitButton;
@@ -19,7 +18,14 @@ public class StartSceneButtons : MonoBehaviour
     public GameObject highscoreMenu;
     public GameObject controlsMenu;
 
-	void Start () {
+    public AudioSource source;
+    public AudioClip buttonClick;
+    public AudioClip backgroundMusic;
+
+	void Start ()
+    {
+
+        source = GetComponent<AudioSource>();
 
         menuButtons.gameObject.SetActive(true);
         levelSelection.gameObject.SetActive(false);
@@ -28,12 +34,15 @@ public class StartSceneButtons : MonoBehaviour
         backButton.gameObject.SetActive(false);
 
         newGameButton.onClick.AddListener(ChooseLevel);
-        startGameButton.onClick.AddListener(StartNewGame);
         highscoreButton.onClick.AddListener(OpenHighScore);
         controlsButton.onClick.AddListener(OpenControls);
         exitButton.onClick.AddListener(ExitGame);
         backButton.onClick.AddListener(BackToMenu);
-	}
+
+        source.clip = backgroundMusic;
+        source.loop = true;
+        source.Play();
+    }
 	
 	void Update () {
 	
@@ -41,6 +50,8 @@ public class StartSceneButtons : MonoBehaviour
 
     void ChooseLevel()
     {
+        source.PlayOneShot(buttonClick);
+
         menuButtons.gameObject.SetActive(false);
         levelSelection.gameObject.SetActive(true);
         highscoreMenu.gameObject.SetActive(false);
@@ -50,11 +61,15 @@ public class StartSceneButtons : MonoBehaviour
 
     void StartNewGame()
     {
+        source.PlayOneShot(buttonClick);
+
         SceneManager.LoadScene(1);
     }
 
     void OpenHighScore()
     {
+        source.PlayOneShot(buttonClick);
+
         menuButtons.gameObject.SetActive(false);
         levelSelection.gameObject.SetActive(false);
         highscoreMenu.gameObject.SetActive(true);
@@ -64,6 +79,8 @@ public class StartSceneButtons : MonoBehaviour
     
     void OpenControls()
     {
+        source.PlayOneShot(buttonClick);
+
         menuButtons.gameObject.SetActive(false);
         levelSelection.gameObject.SetActive(false);
         highscoreMenu.gameObject.SetActive(false);
@@ -73,6 +90,8 @@ public class StartSceneButtons : MonoBehaviour
 
     void BackToMenu()
     {
+        source.PlayOneShot(buttonClick);
+
         menuButtons.gameObject.SetActive(true);
         levelSelection.gameObject.SetActive(false);
         highscoreMenu.gameObject.SetActive(false);
@@ -82,6 +101,8 @@ public class StartSceneButtons : MonoBehaviour
 
     void ExitGame()
     {
+        source.PlayOneShot(buttonClick);
+
         Application.Quit();
     }
 }
