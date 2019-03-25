@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+    [Range(1f, 4f)]
     public float speed;
     private Vector2 velocity;
     private Rigidbody2D rb;
@@ -17,7 +18,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        velocity = moveInput.normalized * speed;
+        velocity = moveInput.normalized * speed * 50;
 
         rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
     }

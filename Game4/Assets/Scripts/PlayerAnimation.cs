@@ -6,8 +6,7 @@ public class PlayerAnimation : MonoBehaviour
 {
     [HideInInspector]
     public Animator anim;
-
-    [HideInInspector]
+    
     public AudioSource source;
     public AudioClip walkingSound;
 
@@ -16,7 +15,6 @@ public class PlayerAnimation : MonoBehaviour
     void Start ()
     {
         anim = GetComponent<Animator>();
-        source = GetComponent<AudioSource>();
     }
 	
 	void Update () {
