@@ -14,13 +14,20 @@ public class PauseGame : MonoBehaviour {
     public Slider sliderMusic;
     public Slider sliderSounds;
 
-    public GameObject backgroundMusicSource;
-    public GameObject gameSoundsSource;
+    private AudioSource backgroundMusicSource;
+    private AudioSource gameSoundsSource;
+    private AudioSource gameSoundsSource1;
 
     private bool isPaused = false;
 
+    private GameManager manager;
+
     void Start()
     {
+        manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
+        backgroundMusicSource = manager.backgroundMusicSource;
+        gameSoundsSource = manager.gameSoundsSource;
+        gameSoundsSource1 = manager.gameSoundsSource1;
         pauseStuff.gameObject.SetActive(false);
         sliders.gameObject.SetActive(false);
         sliderMusic.value = 0.5f;
@@ -50,8 +57,8 @@ public class PauseGame : MonoBehaviour {
                 Time.timeScale = 1.0f;
             }
         }
-        backgroundMusicSource.GetComponent<AudioSource>().volume = sliderMusic.value;
-        gameSoundsSource.GetComponent<AudioSource>().volume = sliderSounds.value;
+        backgroundMusicSource.volume = sliderMusic.value;
+        gameSoundsSource.volume = sliderSounds.value;
     }
 
     void Resume()

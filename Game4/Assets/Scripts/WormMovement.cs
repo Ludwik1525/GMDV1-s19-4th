@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WormMovement : MonoBehaviour {
-
-    [Range(1f, 4f)]
-    public float speed;
+    
+    private float speed;
 
     [Range(1f, 5f)]
     public float changeSideTime;
@@ -16,8 +15,12 @@ public class WormMovement : MonoBehaviour {
 
     private bool facingRight = true;
 
+    private GameManager manager;
+
     void Start()
     {
+        manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
+        speed = manager.wormsSpeed;
         rb = GetComponent<Rigidbody2D>();
         moveInput = new Vector2(speed, 0);
         StartCoroutine(WormCoroutine(changeSideTime));

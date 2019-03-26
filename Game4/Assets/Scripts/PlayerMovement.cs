@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-
-    [Range(1f, 4f)]
-    public float speed;
+    
+    private float speed;
     private Vector2 velocity;
     private Rigidbody2D rb;
-    
+
+    private GameManager manager;
+
     void Start()
     {
+        manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
+        speed = manager.playerSpeed;
         rb = GetComponent<Rigidbody2D>();
     }
     

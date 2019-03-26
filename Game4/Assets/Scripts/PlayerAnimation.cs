@@ -7,13 +7,18 @@ public class PlayerAnimation : MonoBehaviour
     [HideInInspector]
     public Animator anim;
     
-    public AudioSource source;
-    public AudioClip walkingSound;
+    private AudioSource source;
+    private AudioClip walkingSound;
 
     private bool isSoundPlaying = false;
 
+    private GameManager manager;
+
     void Start ()
     {
+        manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
+        source = manager.gameSoundsSource;
+        walkingSound = manager.playerWalkingSound;
         anim = GetComponent<Animator>();
     }
 	

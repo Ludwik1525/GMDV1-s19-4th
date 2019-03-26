@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\PlayerEventsManager.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\StartSceneButtons.cs" />
+    <Compile Include="Assets\Scripts\TimeCounter.cs" />
     <Compile Include="Assets\Scripts\WormMovement.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/mmich/Desktop/GMD/Game4/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

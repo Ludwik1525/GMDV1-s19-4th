@@ -12,7 +12,17 @@ public class GameManager : MonoBehaviour
 
     private string configFilePath = "Assets/Resources/config.JSON";
 
-	void Start () {
+    [Range(1f, 4f)]
+    public float playerSpeed;
+    [Range(1f, 4f)]
+    public float wormsSpeed;
+    public AudioSource gameSoundsSource;
+    public AudioSource gameSoundsSource1;
+    public AudioSource backgroundMusicSource;
+    public AudioClip playerWalkingSound;
+    public AudioClip playerReceiveDMGSound;
+
+    void Start () {
 		LoadConfigFile();
 	}
 
