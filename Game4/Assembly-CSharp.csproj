@@ -63,7 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\PauseGame.cs" />
+    <Compile Include="Assets\Scripts\GameplayEventsManager.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
     <Compile Include="Assets\Scripts\PlayerEventsManager.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />

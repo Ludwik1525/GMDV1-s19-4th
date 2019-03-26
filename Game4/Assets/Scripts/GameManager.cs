@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public AudioSource backgroundMusicSource;
     public AudioClip playerWalkingSound;
     public AudioClip playerReceiveDMGSound;
+    public AudioClip playerDeathSound;
+    public AudioClip levelCompletedSound;
 
     void Start () {
 		LoadConfigFile();
