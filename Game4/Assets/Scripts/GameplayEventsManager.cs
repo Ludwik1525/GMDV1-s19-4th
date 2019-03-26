@@ -30,7 +30,14 @@ public class GameplayEventsManager : MonoBehaviour {
     private GameManager manager;
     public int lives;
 
-    private StartSceneButtons levelUnlocker;
+    private GameObject levelStatusHolder;
+    private LevelUnlocker levelUnlocker;
+
+    void Awake()
+    {
+        levelStatusHolder = GameObject.FindGameObjectWithTag("LevelStatusHolder");
+        DontDestroyOnLoad(levelStatusHolder);
+    }
 
     void Start()
     {
@@ -51,13 +58,14 @@ public class GameplayEventsManager : MonoBehaviour {
         sliderSounds.value = 0.5f;
         resume.onClick.AddListener(Resume);
         menu.onClick.AddListener(GoToMenu);
+        tryAgain.onClick.AddListener(RestartLevel);
 
         lives3.SetActive(true);
         lives2.SetActive(true);
         lives1.SetActive(true);
         lives = 3;
-
-        levelUnlocker = GetComponent<StartSceneButtons>();
+        
+        levelUnlocker = levelStatusHolder.GetComponent<LevelUnlocker>();
     }
 
     void Update()
@@ -109,7 +117,14 @@ public class GameplayEventsManager : MonoBehaviour {
         menu.gameObject.SetActive(true);
         tryAgain.gameObject.SetActive(true);
         sliderMusic.value = 0.1f;
-        levelUnlocker.lvl2unlocked = true;
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            levelUnlocker.isLVL2unlocked = true;
+        }
+        if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            levelUnlocker.isLVL3unlocked = true;
+        }
         Time.timeScale = 0.0f;
         
     }
@@ -119,13 +134,13 @@ public class GameplayEventsManager : MonoBehaviour {
         loseScreen.gameObject.SetActive(true);
         menu.gameObject.SetActive(true);
         tryAgain.gameObject.SetActive(true);
+        sliderMusic.value = 0.1f;
         Time.timeScale = 0.0f;
     }
 
     void RestartLevel()
     {
-        int index = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(index);
+        Application.LoadLevel(Application.loadedLevel);
     }
 
     public void DealDMG()

@@ -31,8 +31,17 @@ public class StartSceneButtons : MonoBehaviour
     public GameObject text2;
     public GameObject text3;
 
-    public bool lvl2unlocked = false;
-    public bool lvl3unlocked = false;
+    public bool lvl2unlocked;
+    public bool lvl3unlocked;
+
+    private GameObject levelStatusHolder;
+    private LevelUnlocker levelUnlocker;
+
+    void Awake()
+    {
+        levelStatusHolder = GameObject.FindGameObjectWithTag("LevelStatusHolder");
+        DontDestroyOnLoad(levelStatusHolder);
+    }
 
     void Start ()
     {
@@ -58,6 +67,11 @@ public class StartSceneButtons : MonoBehaviour
         source.clip = backgroundMusic;
         source.loop = true;
         source.Play();
+
+        levelUnlocker = levelStatusHolder.GetComponent<LevelUnlocker>();
+
+        lvl2unlocked = levelUnlocker.isLVL2unlocked;
+        lvl3unlocked = levelUnlocker.isLVL3unlocked;
 
         if (lvl2unlocked)
         {
@@ -133,12 +147,12 @@ public class StartSceneButtons : MonoBehaviour
 
     void StartLVL2()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     void StartLVL3()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 
     void ExitGame()

@@ -18,7 +18,7 @@ public class PlayerEventsManager : MonoBehaviour
 
     void Start ()
     {
-
+        Time.timeScale = 1.0f;
         startPosition = transform.position;
         counter = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<TimeCounter>();
 
