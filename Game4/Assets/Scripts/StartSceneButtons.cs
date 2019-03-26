@@ -13,6 +13,10 @@ public class StartSceneButtons : MonoBehaviour
     public Button exitButton;
     public Button backButton;
 
+    public Button level1;
+    public Button level2;
+    public Button level3;
+
     public GameObject menuButtons;
     public GameObject levelSelection;
     public GameObject highscoreMenu;
@@ -22,7 +26,15 @@ public class StartSceneButtons : MonoBehaviour
     public AudioClip buttonClick;
     public AudioClip backgroundMusic;
 
-	void Start ()
+    public GameObject paddlock2;
+    public GameObject paddlock3;
+    public GameObject text2;
+    public GameObject text3;
+
+    public bool lvl2unlocked = false;
+    public bool lvl3unlocked = false;
+
+    void Start ()
     {
 
         source = GetComponent<AudioSource>();
@@ -39,13 +51,28 @@ public class StartSceneButtons : MonoBehaviour
         exitButton.onClick.AddListener(ExitGame);
         backButton.onClick.AddListener(BackToMenu);
 
+        level1.onClick.AddListener(StartLVL1);
+        level2.onClick.AddListener(StartLVL2);
+        level3.onClick.AddListener(StartLVL3);
+
         source.clip = backgroundMusic;
         source.loop = true;
         source.Play();
+
+        if (lvl2unlocked)
+        {
+            UnlockLVL2();
+        }
+
+        if (lvl3unlocked)
+        {
+            UnlockLVL3();
+        }
     }
 	
 	void Update () {
 	
+
 	}
 
     void ChooseLevel()
@@ -99,10 +126,41 @@ public class StartSceneButtons : MonoBehaviour
         backButton.gameObject.SetActive(false);
     }
 
+    void StartLVL1()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    void StartLVL2()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    void StartLVL3()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     void ExitGame()
     {
         source.PlayOneShot(buttonClick);
 
         Application.Quit();
+    }
+
+    public void UnlockLVL2()
+    {
+        paddlock2.SetActive(false);
+        text2.SetActive(true);
+        level2.gameObject.SetActive(true);
+        level2.GetComponent<Image>().color = Color.green;
+    }
+
+    public void UnlockLVL3()
+    {
+        paddlock3.SetActive(false);
+        text3.SetActive(true);
+        level3.gameObject.SetActive(true);
+        level3.GetComponent<Image>().color = Color.green;
     }
 }

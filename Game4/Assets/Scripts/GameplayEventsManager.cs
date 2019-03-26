@@ -30,8 +30,11 @@ public class GameplayEventsManager : MonoBehaviour {
     private GameManager manager;
     public int lives;
 
+    private StartSceneButtons levelUnlocker;
+
     void Start()
     {
+        Time.timeScale = 1.0f;
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
         backgroundMusicSource = manager.backgroundMusicSource;
         gameSoundsSource = manager.gameSoundsSource;
@@ -53,6 +56,8 @@ public class GameplayEventsManager : MonoBehaviour {
         lives2.SetActive(true);
         lives1.SetActive(true);
         lives = 3;
+
+        levelUnlocker = GetComponent<StartSceneButtons>();
     }
 
     void Update()
@@ -104,7 +109,9 @@ public class GameplayEventsManager : MonoBehaviour {
         menu.gameObject.SetActive(true);
         tryAgain.gameObject.SetActive(true);
         sliderMusic.value = 0.1f;
+        levelUnlocker.lvl2unlocked = true;
         Time.timeScale = 0.0f;
+        
     }
 
     void DisplayLoseScreen()
