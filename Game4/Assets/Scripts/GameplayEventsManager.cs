@@ -45,12 +45,27 @@ public class GameplayEventsManager : MonoBehaviour {
     public Button saveScoreButton;
     private bool isScoreSaved;
 
+    public int isLVL2unlocked;
+    public int isLVL3unlocked;
+
     void Awake()
     {
         levelStatusHolder = GameObject.FindGameObjectWithTag("LevelStatusHolder");
         DontDestroyOnLoad(levelStatusHolder);
         ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
         DontDestroyOnLoad(ScoreHolder);
+
+        DontDestroyOnLoad(levelUnlocker);
+
+        levelUnlocker = LevelPersistence.LoadData();
+
+        isLVL2unlocked = levelUnlocker.isLVL2unlocked;
+        isLVL3unlocked = levelUnlocker.isLVL3unlocked;
+    }
+
+    void OnDisable()
+    {
+        LevelPersistence.SaveData(this);
     }
 
     void Start()
@@ -139,11 +154,11 @@ public class GameplayEventsManager : MonoBehaviour {
         sliderMusic.value = 0.1f;
         if(SceneManager.GetActiveScene().buildIndex == 1)
         {
-            levelUnlocker.isLVL2unlocked = true;
+            levelUnlocker.isLVL2unlocked = 1;
         }
         if(SceneManager.GetActiveScene().buildIndex == 2)
         {
-            levelUnlocker.isLVL3unlocked = true;
+            levelUnlocker.isLVL3unlocked = 1;
         }
         GameObject.FindGameObjectWithTag("Player").SetActive(false);
         scoreValue.gameObject.SetActive(true);

@@ -5,8 +5,8 @@ using UnityEngine;
 public class LevelUnlocker : MonoBehaviour
 {
 
-    public bool isLVL2unlocked;
-    public bool isLVL3unlocked;
+    public int isLVL2unlocked { get; set; }
+    public int isLVL3unlocked { get; set; }
 
     void Awake()
     {
