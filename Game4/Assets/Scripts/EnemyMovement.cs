@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WormMovement : MonoBehaviour {
+public class  EnemyMovement : MonoBehaviour {
     
     private float speed;
 
@@ -20,10 +20,33 @@ public class WormMovement : MonoBehaviour {
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
-        speed = manager.wormsSpeed;
+        if(this.gameObject.CompareTag("Worm"))
+        {
+            speed = manager.wormsSpeed;
+        }
+        else if (this.gameObject.CompareTag("Golem"))
+        {
+            speed = manager.golemSpeed;
+        }
+        else if (this.gameObject.CompareTag("Blackman"))
+        {
+            speed = manager.blackmanSpeed;
+        }
+        else if (this.gameObject.CompareTag("Skeleton"))
+        {
+            speed = manager.skeletonSpeed;
+        }
+        else if (this.gameObject.CompareTag("Flame"))
+        {
+            speed = manager.flameSpeed;
+        }
+        else if (this.gameObject.CompareTag("Spider"))
+        {
+            speed = manager.spiderSpeed;
+        }
         rb = GetComponent<Rigidbody2D>();
         moveInput = new Vector2(speed, 0);
-        StartCoroutine(WormCoroutine(changeSideTime));
+        StartCoroutine(WormCoroutine());
     }
 
     void Update()
@@ -51,11 +74,18 @@ public class WormMovement : MonoBehaviour {
         facingRight = !facingRight;
     }
 
-    public IEnumerator WormCoroutine(float t)
+    private void OnCollisionEnter2D(Collision2D other)
     {
+        Flip();
+    }
+
+    public IEnumerator WormCoroutine()
+    {
+        int i = 0;
         while(true)
         {
-            yield return new WaitForSeconds(t);
+            i = Random.Range(2, 6);
+            yield return new WaitForSeconds(i);
             Flip();
         }
     }

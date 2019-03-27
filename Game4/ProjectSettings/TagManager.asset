@@ -7,6 +7,12 @@ TagManager:
   - Enemy
   - LevelStatusHolder
   - HighscoreHolder
+  - Worm
+  - Golem
+  - Blackman
+  - Skeleton
+  - Flame
+  - Spider
   layers:
   - Default
   - TransparentFX
