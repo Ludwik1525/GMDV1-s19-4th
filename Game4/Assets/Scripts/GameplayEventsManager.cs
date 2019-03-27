@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -190,7 +191,7 @@ public class GameplayEventsManager : MonoBehaviour {
 
     public float CalculateScore()
     {
-        float result = 10000.000f * (float)lives * (1.000f / (float)timePassed);
+        float result = 10000000f * (float)lives*(float)(Math.PI/7.7) * (1f / (float)timePassed);
         return result;
     }
 
