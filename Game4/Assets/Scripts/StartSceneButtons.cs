@@ -107,21 +107,42 @@ public class StartSceneButtons : MonoBehaviour
 
         highscoreHolder = ScoreHolder.GetComponent<HighscoreHolder>();
 
+        List<KeyValuePair<string, float>> lvl1scores = highscoreHolder.highscore1.ToList();
+
+        lvl1scores.Sort(delegate(KeyValuePair<string, float> pair1, KeyValuePair<string, float> pair2)
+            {
+                return pair2.Value.CompareTo(pair1.Value);
+            });
+
+        List<KeyValuePair<string, float>> lvl2scores = highscoreHolder.highscore2.ToList();
+
+        lvl2scores.Sort(delegate (KeyValuePair<string, float> pair1, KeyValuePair<string, float> pair2)
+        {
+            return pair2.Value.CompareTo(pair1.Value);
+        });
+
+        List<KeyValuePair<string, float>> lvl3scores = highscoreHolder.highscore3.ToList();
+
+        lvl3scores.Sort(delegate (KeyValuePair<string, float> pair1, KeyValuePair<string, float> pair2)
+        {
+            return pair2.Value.CompareTo(pair1.Value);
+        });
+
         for (int i = 0; i < highscoreHolder.highscore1.ToArray().Length; i++)
         {
-            scores1.text += highscoreHolder.highscore1.ToArray().GetValue(i);
+            scores1.text += lvl1scores[i];
             scores1.text += "\n";
         }
 
         for (int i = 0; i < highscoreHolder.highscore2.ToArray().Length; i++)
         {
-            scores2.text += highscoreHolder.highscore2.ToArray().GetValue(i);
+            scores2.text += lvl2scores[i];
             scores2.text += "\n";
         }
 
         for (int i = 0; i < highscoreHolder.highscore3.ToArray().Length; i++)
         {
-            scores3.text += highscoreHolder.highscore3.ToArray().GetValue(i);
+            scores3.text += lvl3scores[i];
             scores3.text += "\n";
         }
     }

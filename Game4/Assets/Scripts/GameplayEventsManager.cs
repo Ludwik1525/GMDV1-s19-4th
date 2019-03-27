@@ -190,7 +190,7 @@ public class GameplayEventsManager : MonoBehaviour {
 
     public float CalculateScore()
     {
-        float result = 100.0f * lives * (1.0f / timePassed);
+        float result = 10000.000f * (float)lives * (1.000f / (float)timePassed);
         return result;
     }
 
@@ -198,17 +198,20 @@ public class GameplayEventsManager : MonoBehaviour {
     {
         if(!isScoreSaved)
         {
-            if (SceneManager.GetActiveScene().buildIndex == 1)
+            if(nameInput.text!="")
             {
-                highscoreHolder.highscore1.Add(nameInput.text, CalculateScore());
-            }
-            else if (SceneManager.GetActiveScene().buildIndex == 2)
-            {
-                highscoreHolder.highscore2.Add(nameInput.text, CalculateScore());
-            }
-            else if (SceneManager.GetActiveScene().buildIndex == 3)
-            {
-                highscoreHolder.highscore3.Add(nameInput.text, CalculateScore());
+                if (SceneManager.GetActiveScene().buildIndex == 1)
+                {
+                    highscoreHolder.highscore1.Add(nameInput.text, CalculateScore());
+                }
+                else if (SceneManager.GetActiveScene().buildIndex == 2)
+                {
+                    highscoreHolder.highscore2.Add(nameInput.text, CalculateScore());
+                }
+                else if (SceneManager.GetActiveScene().buildIndex == 3)
+                {
+                    highscoreHolder.highscore3.Add(nameInput.text, CalculateScore());
+                }
             }
         }
         isScoreSaved = true;
