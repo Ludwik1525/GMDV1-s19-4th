@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -106,9 +107,23 @@ public class StartSceneButtons : MonoBehaviour
 
         highscoreHolder = ScoreHolder.GetComponent<HighscoreHolder>();
 
-        scores1.text += "\n" +  highscoreHolder.highscore1;
-        scores2.text += "\n" + highscoreHolder.highscore2;
-        scores3.text += "\n" + highscoreHolder.highscore3;
+        for (int i = 0; i < highscoreHolder.highscore1.ToArray().Length; i++)
+        {
+            scores1.text += highscoreHolder.highscore1.ToArray().GetValue(i);
+            scores1.text += "\n";
+        }
+
+        for (int i = 0; i < highscoreHolder.highscore2.ToArray().Length; i++)
+        {
+            scores2.text += highscoreHolder.highscore2.ToArray().GetValue(i);
+            scores2.text += "\n";
+        }
+
+        for (int i = 0; i < highscoreHolder.highscore3.ToArray().Length; i++)
+        {
+            scores3.text += highscoreHolder.highscore3.ToArray().GetValue(i);
+            scores3.text += "\n";
+        }
     }
 	
 	void Update () {

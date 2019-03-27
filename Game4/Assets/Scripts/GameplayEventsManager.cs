@@ -40,6 +40,10 @@ public class GameplayEventsManager : MonoBehaviour {
     private GameObject ScoreHolder;
     private HighscoreHolder highscoreHolder;
 
+    public InputField nameInput;
+    public Button saveScoreButton;
+    private bool isScoreSaved;
+
     void Awake()
     {
         levelStatusHolder = GameObject.FindGameObjectWithTag("LevelStatusHolder");
@@ -69,6 +73,7 @@ public class GameplayEventsManager : MonoBehaviour {
         resume.onClick.AddListener(Resume);
         menu.onClick.AddListener(GoToMenu);
         tryAgain.onClick.AddListener(RestartLevel);
+        saveScoreButton.onClick.AddListener(SaveScore);
 
         lives3.SetActive(true);
         lives2.SetActive(true);
@@ -79,7 +84,7 @@ public class GameplayEventsManager : MonoBehaviour {
         timeCounter = GetComponent<TimeCounter>();
 
         highscoreHolder = ScoreHolder.GetComponent<HighscoreHolder>();
-
+        isScoreSaved = false;
     }
 
     void Update()
@@ -141,7 +146,7 @@ public class GameplayEventsManager : MonoBehaviour {
         }
         GameObject.FindGameObjectWithTag("Player").SetActive(false);
         scoreValue.gameObject.SetActive(true);
-        scoreValue.text = "" + CalculateAndSaveScore();
+        scoreValue.text = "" + CalculateScore();
         Time.timeScale = 0.0f;
     }
 
@@ -183,21 +188,29 @@ public class GameplayEventsManager : MonoBehaviour {
         Time.timeScale = 1.0f;
     }
 
-    public float CalculateAndSaveScore()
+    public float CalculateScore()
     {
         float result = 100.0f * lives * (1.0f / timePassed);
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            highscoreHolder.highscore1 += result;
-        }
-        else if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            highscoreHolder.highscore2 += result;
-        }
-        else if (SceneManager.GetActiveScene().buildIndex == 3)
-        {
-            highscoreHolder.highscore3 += result;
-        }
         return result;
+    }
+
+    public void SaveScore()
+    {
+        if(!isScoreSaved)
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                highscoreHolder.highscore1.Add(nameInput.text, CalculateScore());
+            }
+            else if (SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                highscoreHolder.highscore2.Add(nameInput.text, CalculateScore());
+            }
+            else if (SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                highscoreHolder.highscore3.Add(nameInput.text, CalculateScore());
+            }
+        }
+        isScoreSaved = true;
     }
 }

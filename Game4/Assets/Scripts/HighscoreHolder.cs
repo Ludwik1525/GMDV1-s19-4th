@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HighscoreHolder : MonoBehaviour
 {
-    public string highscore1;
-    public string highscore2;
-    public string highscore3;
+    public Dictionary<string, float> highscore1;
+    public Dictionary<string, float> highscore2;
+    public Dictionary<string, float> highscore3;
 
     void Awake ()
     {
+        highscore1 = new Dictionary<string, float>();
+        highscore2 = new Dictionary<string, float>();
+        highscore3 = new Dictionary<string, float>();
         DontDestroyOnLoad(this.gameObject);
     }
 	
