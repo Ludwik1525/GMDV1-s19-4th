@@ -37,11 +37,15 @@ public class GameplayEventsManager : MonoBehaviour {
     private int timePassed;
 
     public Text scoreValue;
+    private GameObject ScoreHolder;
+    private HighscoreHolder highscoreHolder;
 
     void Awake()
     {
         levelStatusHolder = GameObject.FindGameObjectWithTag("LevelStatusHolder");
         DontDestroyOnLoad(levelStatusHolder);
+        ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
+        DontDestroyOnLoad(ScoreHolder);
     }
 
     void Start()
@@ -73,6 +77,9 @@ public class GameplayEventsManager : MonoBehaviour {
         
         levelUnlocker = levelStatusHolder.GetComponent<LevelUnlocker>();
         timeCounter = GetComponent<TimeCounter>();
+
+        highscoreHolder = ScoreHolder.GetComponent<HighscoreHolder>();
+
     }
 
     void Update()
@@ -178,6 +185,19 @@ public class GameplayEventsManager : MonoBehaviour {
 
     public float CalculateAndSaveScore()
     {
-        return 100.0f * lives * (1.0f / timePassed);
+        float result = 100.0f * lives * (1.0f / timePassed);
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            highscoreHolder.highscore1 += result;
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            highscoreHolder.highscore2 += result;
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            highscoreHolder.highscore3 += result;
+        }
+        return result;
     }
 }

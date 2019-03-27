@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameplayEventsManager.cs" />
+    <Compile Include="Assets\Scripts\HighscoreHolder.cs" />
     <Compile Include="Assets\Scripts\LevelUnlocker.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
     <Compile Include="Assets\Scripts\PlayerEventsManager.cs" />

@@ -41,10 +41,19 @@ public class StartSceneButtons : MonoBehaviour
     private GameObject levelStatusHolder;
     private LevelUnlocker levelUnlocker;
 
+    private GameObject ScoreHolder;
+
+    private HighscoreHolder highscoreHolder;
+    public Text scores1;
+    public Text scores2;
+    public Text scores3;
+
     void Awake()
     {
         levelStatusHolder = GameObject.FindGameObjectWithTag("LevelStatusHolder");
         DontDestroyOnLoad(levelStatusHolder);
+        ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
+        DontDestroyOnLoad(ScoreHolder);
     }
 
     void Start ()
@@ -61,6 +70,9 @@ public class StartSceneButtons : MonoBehaviour
         controlsMenu.gameObject.SetActive(false);
         backButton.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(false);
+        scores1.gameObject.SetActive(false);
+        scores2.gameObject.SetActive(false);
+        scores3.gameObject.SetActive(false);
 
         newGameButton.onClick.AddListener(ChooseLevel);
         highscoreButton.onClick.AddListener(OpenHighScore);
@@ -91,6 +103,12 @@ public class StartSceneButtons : MonoBehaviour
         {
             UnlockLVL3();
         }
+
+        highscoreHolder = ScoreHolder.GetComponent<HighscoreHolder>();
+
+        scores1.text += "\n" +  highscoreHolder.highscore1;
+        scores2.text += "\n" + highscoreHolder.highscore2;
+        scores3.text += "\n" + highscoreHolder.highscore3;
     }
 	
 	void Update () {
@@ -127,6 +145,7 @@ public class StartSceneButtons : MonoBehaviour
         backButton.gameObject.SetActive(true);
         level1Menu.gameObject.SetActive(true);
         nextButton.gameObject.SetActive(true);
+        scores1.gameObject.SetActive(true);
     }
     
     void OpenControls()
@@ -153,6 +172,9 @@ public class StartSceneButtons : MonoBehaviour
         level1Menu.gameObject.SetActive(false);
         level2Menu.gameObject.SetActive(false);
         level3Menu.gameObject.SetActive(false);
+        scores1.gameObject.SetActive(false);
+        scores2.gameObject.SetActive(false);
+        scores3.gameObject.SetActive(false);
     }
 
     void StartLVL1()
@@ -195,23 +217,34 @@ public class StartSceneButtons : MonoBehaviour
 
     public void NextHighscore()
     {
+        source.PlayOneShot(buttonClick);
+
         if (level1Menu.gameObject.activeInHierarchy)
         {
             level1Menu.gameObject.SetActive(false);
             level2Menu.gameObject.SetActive(true);
             level3Menu.gameObject.SetActive(false);
+            scores1.gameObject.SetActive(false);
+            scores2.gameObject.SetActive(true);
+            scores3.gameObject.SetActive(false);
         }
         else if (level2Menu.gameObject.activeInHierarchy)
         {
             level1Menu.gameObject.SetActive(false);
             level2Menu.gameObject.SetActive(false);
             level3Menu.gameObject.SetActive(true);
+            scores1.gameObject.SetActive(false);
+            scores2.gameObject.SetActive(false);
+            scores3.gameObject.SetActive(true);
         }
         else if (level3Menu.gameObject.activeInHierarchy)
         {
             level1Menu.gameObject.SetActive(true);
             level2Menu.gameObject.SetActive(false);
             level3Menu.gameObject.SetActive(false);
+            scores1.gameObject.SetActive(true);
+            scores2.gameObject.SetActive(false);
+            scores3.gameObject.SetActive(false);
         }
     }
 }

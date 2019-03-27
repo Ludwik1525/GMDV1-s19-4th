@@ -616,12 +616,12 @@ GameObject:
   - component: {fileID: 369152152}
   - component: {fileID: 369152151}
   m_Layer: 5
-  m_Name: Scores
+  m_Name: Scores3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &369152150
 RectTransform:
   m_ObjectHideFlags: 0
@@ -635,10 +635,10 @@ RectTransform:
   m_Father: {fileID: 70044638}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.5999756, y: -211.8}
-  m_SizeDelta: {x: 269.6, y: 292.4}
+  m_AnchoredPosition: {x: -52.099976, y: -189.37}
+  m_SizeDelta: {x: 369.6, y: 247.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &369152151
 MonoBehaviour:
@@ -672,7 +672,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lorem ispum
+  m_Text: 
 --- !u!222 &369152152
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -694,7 +694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &452046742
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1685,6 +1685,9 @@ MonoBehaviour:
   text3: {fileID: 1775841182}
   lvl2unlocked: 0
   lvl3unlocked: 0
+  scores1: {fileID: 1513409405}
+  scores2: {fileID: 864572725}
+  scores3: {fileID: 369152151}
 --- !u!82 &724679428
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1947,7 +1950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &853204654
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2053,12 +2056,12 @@ GameObject:
   - component: {fileID: 864572726}
   - component: {fileID: 864572725}
   m_Layer: 5
-  m_Name: Scores
+  m_Name: Scores2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &864572724
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2072,10 +2075,10 @@ RectTransform:
   m_Father: {fileID: 941923714}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.5999756, y: -211.8}
-  m_SizeDelta: {x: 269.6, y: 292.4}
+  m_AnchoredPosition: {x: -52.099976, y: -189.37}
+  m_SizeDelta: {x: 369.6, y: 247.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &864572725
 MonoBehaviour:
@@ -2109,7 +2112,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lorem ispum
+  m_Text: 
 --- !u!222 &864572726
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2553,7 +2556,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1143983010
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2959,7 +2962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1392295399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3054,6 +3057,49 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1392295398}
   m_CullTransparentMesh: 0
+--- !u!1 &1488839569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1488839571}
+  - component: {fileID: 1488839570}
+  m_Layer: 0
+  m_Name: ScoreHolder
+  m_TagString: HighscoreHolder
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1488839570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1488839569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78112de4e4a99804b822fd960b23d787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highscore1: 
+  highscore2: 
+  highscore3: 
+--- !u!4 &1488839571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1488839569}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 592.891, y: 208.2109, z: -5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1513409403
 GameObject:
   m_ObjectHideFlags: 0
@@ -3065,12 +3111,12 @@ GameObject:
   - component: {fileID: 1513409406}
   - component: {fileID: 1513409405}
   m_Layer: 5
-  m_Name: Scores
+  m_Name: Scores1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1513409404
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3084,10 +3130,10 @@ RectTransform:
   m_Father: {fileID: 1833115608}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.5999756, y: -211.8}
-  m_SizeDelta: {x: 269.6, y: 292.4}
+  m_AnchoredPosition: {x: -52.599976, y: -189.4}
+  m_SizeDelta: {x: 370.6, y: 247.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1513409405
 MonoBehaviour:
@@ -3121,7 +3167,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lorem ispum
+  m_Text: 
 --- !u!222 &1513409406
 CanvasRenderer:
   m_ObjectHideFlags: 0

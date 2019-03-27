@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - LevelStatusHolder
+  - HighscoreHolder
   layers:
   - Default
   - TransparentFX
