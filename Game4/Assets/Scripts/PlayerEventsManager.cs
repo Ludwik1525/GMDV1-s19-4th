@@ -47,7 +47,6 @@ public class PlayerEventsManager : MonoBehaviour
                 source.PlayOneShot(deathSound);
             }
             transform.position = transform.position + new Vector3(startPosition.x - transform.position.x, startPosition.y - transform.position.y, 0);
-            counter.counterValue.text = "" + 0;
             counter.SetTimer();
             eventsManager.DealDMG();
         }

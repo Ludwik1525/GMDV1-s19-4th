@@ -12,6 +12,7 @@ public class StartSceneButtons : MonoBehaviour
     public Button controlsButton;
     public Button exitButton;
     public Button backButton;
+    public Button nextButton;
 
     public Button level1;
     public Button level2;
@@ -21,6 +22,9 @@ public class StartSceneButtons : MonoBehaviour
     public GameObject levelSelection;
     public GameObject highscoreMenu;
     public GameObject controlsMenu;
+    public GameObject level1Menu;
+    public GameObject level2Menu;
+    public GameObject level3Menu;
 
     public AudioSource source;
     public AudioClip buttonClick;
@@ -51,14 +55,19 @@ public class StartSceneButtons : MonoBehaviour
         menuButtons.gameObject.SetActive(true);
         levelSelection.gameObject.SetActive(false);
         highscoreMenu.gameObject.SetActive(false);
+        level1Menu.gameObject.SetActive(false);
+        level2Menu.gameObject.SetActive(false);
+        level3Menu.gameObject.SetActive(false);
         controlsMenu.gameObject.SetActive(false);
         backButton.gameObject.SetActive(false);
+        nextButton.gameObject.SetActive(false);
 
         newGameButton.onClick.AddListener(ChooseLevel);
         highscoreButton.onClick.AddListener(OpenHighScore);
         controlsButton.onClick.AddListener(OpenControls);
         exitButton.onClick.AddListener(ExitGame);
         backButton.onClick.AddListener(BackToMenu);
+        nextButton.onClick.AddListener(NextHighscore);
 
         level1.onClick.AddListener(StartLVL1);
         level2.onClick.AddListener(StartLVL2);
@@ -116,6 +125,8 @@ public class StartSceneButtons : MonoBehaviour
         highscoreMenu.gameObject.SetActive(true);
         controlsMenu.gameObject.SetActive(false);
         backButton.gameObject.SetActive(true);
+        level1Menu.gameObject.SetActive(true);
+        nextButton.gameObject.SetActive(true);
     }
     
     void OpenControls()
@@ -138,6 +149,10 @@ public class StartSceneButtons : MonoBehaviour
         highscoreMenu.gameObject.SetActive(false);
         controlsMenu.gameObject.SetActive(false);
         backButton.gameObject.SetActive(false);
+        nextButton.gameObject.SetActive(false);
+        level1Menu.gameObject.SetActive(false);
+        level2Menu.gameObject.SetActive(false);
+        level3Menu.gameObject.SetActive(false);
     }
 
     void StartLVL1()
@@ -176,5 +191,27 @@ public class StartSceneButtons : MonoBehaviour
         text3.SetActive(true);
         level3.gameObject.SetActive(true);
         level3.GetComponent<Image>().color = Color.green;
+    }
+
+    public void NextHighscore()
+    {
+        if (level1Menu.gameObject.activeInHierarchy)
+        {
+            level1Menu.gameObject.SetActive(false);
+            level2Menu.gameObject.SetActive(true);
+            level3Menu.gameObject.SetActive(false);
+        }
+        else if (level2Menu.gameObject.activeInHierarchy)
+        {
+            level1Menu.gameObject.SetActive(false);
+            level2Menu.gameObject.SetActive(false);
+            level3Menu.gameObject.SetActive(true);
+        }
+        else if (level3Menu.gameObject.activeInHierarchy)
+        {
+            level1Menu.gameObject.SetActive(true);
+            level2Menu.gameObject.SetActive(false);
+            level3Menu.gameObject.SetActive(false);
+        }
     }
 }

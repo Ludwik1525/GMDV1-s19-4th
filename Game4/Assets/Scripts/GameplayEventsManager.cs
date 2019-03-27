@@ -33,6 +33,11 @@ public class GameplayEventsManager : MonoBehaviour {
     private GameObject levelStatusHolder;
     private LevelUnlocker levelUnlocker;
 
+    private TimeCounter timeCounter;
+    private int timePassed;
+
+    public Text scoreValue;
+
     void Awake()
     {
         levelStatusHolder = GameObject.FindGameObjectWithTag("LevelStatusHolder");
@@ -53,6 +58,7 @@ public class GameplayEventsManager : MonoBehaviour {
         loseScreen.gameObject.SetActive(false);
         winScreen.gameObject.SetActive(false);
         tryAgain.gameObject.SetActive(false);
+        scoreValue.gameObject.SetActive(false);
 
         sliderMusic.value = 0.5f;
         sliderSounds.value = 0.5f;
@@ -66,11 +72,12 @@ public class GameplayEventsManager : MonoBehaviour {
         lives = 3;
         
         levelUnlocker = levelStatusHolder.GetComponent<LevelUnlocker>();
+        timeCounter = GetComponent<TimeCounter>();
     }
 
     void Update()
     {
-
+        timePassed = int.Parse(timeCounter.counterValue.text);
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -125,8 +132,10 @@ public class GameplayEventsManager : MonoBehaviour {
         {
             levelUnlocker.isLVL3unlocked = true;
         }
+        GameObject.FindGameObjectWithTag("Player").SetActive(false);
+        scoreValue.gameObject.SetActive(true);
+        scoreValue.text = "" + CalculateAndSaveScore();
         Time.timeScale = 0.0f;
-        
     }
 
     void DisplayLoseScreen()
@@ -135,6 +144,7 @@ public class GameplayEventsManager : MonoBehaviour {
         menu.gameObject.SetActive(true);
         tryAgain.gameObject.SetActive(true);
         sliderMusic.value = 0.1f;
+        GameObject.FindGameObjectWithTag("Player").SetActive(false);
         Time.timeScale = 0.0f;
     }
 
@@ -164,5 +174,10 @@ public class GameplayEventsManager : MonoBehaviour {
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1.0f;
+    }
+
+    public float CalculateAndSaveScore()
+    {
+        return 100.0f * lives * (1.0f / timePassed);
     }
 }

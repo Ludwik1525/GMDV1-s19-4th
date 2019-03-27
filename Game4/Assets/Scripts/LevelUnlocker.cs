@@ -12,12 +12,5 @@ public class LevelUnlocker : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
     }
-
-    void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
+    
 }
