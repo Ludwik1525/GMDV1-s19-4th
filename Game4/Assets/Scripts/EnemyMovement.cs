@@ -6,9 +6,6 @@ public class  EnemyMovement : MonoBehaviour {
     
     private float speed;
 
-    [Range(1f, 5f)]
-    public float changeSideTime;
-
     private Vector2 velocity;
     private Rigidbody2D rb;
     private Vector2 moveInput;
@@ -20,30 +17,23 @@ public class  EnemyMovement : MonoBehaviour {
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
-        if(this.gameObject.CompareTag("Worm"))
+
+        switch (this.gameObject.tag)
         {
-            speed = manager.wormsSpeed;
+            case "Worm": speed = manager.wormsSpeed;
+                break;
+            case "Golem": speed = manager.golemSpeed;
+                break;
+            case "Blackman": speed = manager.blackmanSpeed;
+                break;
+            case "Skeleton": speed = manager.skeletonSpeed;
+                break;
+            case "Flame": speed = manager.flameSpeed;
+                break;
+            case "Spider": speed = manager.spiderSpeed;
+                break;
         }
-        else if (this.gameObject.CompareTag("Golem"))
-        {
-            speed = manager.golemSpeed;
-        }
-        else if (this.gameObject.CompareTag("Blackman"))
-        {
-            speed = manager.blackmanSpeed;
-        }
-        else if (this.gameObject.CompareTag("Skeleton"))
-        {
-            speed = manager.skeletonSpeed;
-        }
-        else if (this.gameObject.CompareTag("Flame"))
-        {
-            speed = manager.flameSpeed;
-        }
-        else if (this.gameObject.CompareTag("Spider"))
-        {
-            speed = manager.spiderSpeed;
-        }
+
         rb = GetComponent<Rigidbody2D>();
         moveInput = new Vector2(speed, 0);
         StartCoroutine(WormCoroutine());

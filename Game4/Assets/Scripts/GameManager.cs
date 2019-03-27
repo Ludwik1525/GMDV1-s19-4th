@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 {
 
     private string configFilePath = "Assets/Resources/config.JSON";
+    private string levelProgressFilePath = "Assets/Resources/levelProgress.JSON";
+    private string highscoreFilePath = "Assets/Resources/highscore.JSON";
 
     [Range(1f, 4f)]
     public float playerSpeed;
@@ -26,9 +28,11 @@ public class GameManager : MonoBehaviour
     public float flameSpeed;
     [Range(1f, 6f)]
     public float spiderSpeed;
+
     public AudioSource gameSoundsSource;
     public AudioSource gameSoundsSource1;
     public AudioSource backgroundMusicSource;
+
     public AudioClip playerWalkingSound;
     public AudioClip playerReceiveDMGSound;
     public AudioClip playerDeathSound;
@@ -36,12 +40,10 @@ public class GameManager : MonoBehaviour
 
     void Start () {
 		LoadConfigFile();
+        LoadHighscoreFile();
+        LoadLevelProgressFile();
 	}
-
-	void Update () {
-	}
-
-   
+    
     public void LoadConfigFile()
     {
         if (File.Exists(configFilePath))
@@ -57,14 +59,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void LoadStartScene()
+    public void LoadHighscoreFile()
     {
-        SceneManager.LoadScene(0);
+        if (File.Exists(levelProgressFilePath))
+        {
+            string dataInJson = File.ReadAllText(configFilePath);
+            string loadedData = JsonUtility.FromJson<string>(dataInJson);
+            
+        }
+        else
+        {
+            Debug.LogError("Highscore file broken!");
+        }
     }
 
-    void LoadMainScene()
+    public void LoadLevelProgressFile()
     {
-        SceneManager.LoadScene(1);
+        if (File.Exists(highscoreFilePath))
+        {
+            string dataInJson = File.ReadAllText(configFilePath);
+            string loadedData = JsonUtility.FromJson<string>(dataInJson);
+            
+        }
+        else
+        {
+            Debug.LogError("LevelProgress file broken!");
+        }
     }
-    
+
 }

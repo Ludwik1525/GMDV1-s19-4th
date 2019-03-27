@@ -18,9 +18,9 @@ public static class LevelPersistence{
         return levelData;
     }
 
-    public static void SaveData(GameplayEventsManager manager)
+    public static void SaveData(int isLVL2Unlocked, int isLVL3Unlocked)
     {
-        PlayerPrefs.SetInt("isLVL2unlocked",manager.levelUnlocker.isLVL2unlocked);
-        PlayerPrefs.SetInt("isLVL3unlocked",manager.levelUnlocker.isLVL3unlocked);
+        PlayerPrefs.SetInt("isLVL2unlocked", isLVL2Unlocked);
+        PlayerPrefs.SetInt("isLVL3unlocked", isLVL3Unlocked);
     }
 }

@@ -9,21 +9,21 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1490730115080134}
+  m_RootGameObject: {fileID: 1774636978968972}
   m_IsPrefabAsset: 1
---- !u!1 &1490730115080134
+--- !u!1 &1774636978968972
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4638552603719956}
-  - component: {fileID: 212062514825055288}
-  - component: {fileID: 95539743763479026}
-  - component: {fileID: 50303308967929030}
-  - component: {fileID: 114144966984521086}
-  - component: {fileID: 60394744614008682}
+  - component: {fileID: 4114131135947860}
+  - component: {fileID: 212376858047171940}
+  - component: {fileID: 95104578915029276}
+  - component: {fileID: 50725884638652156}
+  - component: {fileID: 114593626077370890}
+  - component: {fileID: 60334499740413862}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Golem
@@ -31,12 +31,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4638552603719956
+--- !u!4 &4114131135947860
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1490730115080134}
+  m_GameObject: {fileID: 1774636978968972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -227.1, y: -115.9, z: -5}
   m_LocalScale: {x: 151.33301, y: 151.33301, z: 1.1641}
@@ -44,13 +44,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50303308967929030
+--- !u!50 &50725884638652156
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1490730115080134}
+  m_GameObject: {fileID: 1774636978968972}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -64,12 +64,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!60 &60394744614008682
+--- !u!60 &60334499740413862
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1490730115080134}
+  m_GameObject: {fileID: 1774636978968972}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -99,13 +99,13 @@ PolygonCollider2D:
       - {x: 0.099999994, y: -0.22999999}
       - {x: 0.14999999, y: -0.16}
       - {x: 0.28, y: -0.19}
---- !u!95 &95539743763479026
+--- !u!95 &95104578915029276
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1490730115080134}
+  m_GameObject: {fileID: 1774636978968972}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 33c93a0f8bf4be049aa3d10bfbb35dc9, type: 2}
@@ -117,24 +117,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114144966984521086
+--- !u!114 &114593626077370890
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1490730115080134}
+  m_GameObject: {fileID: 1774636978968972}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95ea795fb1494b54a859ffd82d029b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeSideTime: 3.33
---- !u!212 &212062514825055288
+--- !u!212 &212376858047171940
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1490730115080134}
+  m_GameObject: {fileID: 1774636978968972}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

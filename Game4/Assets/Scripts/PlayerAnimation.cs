@@ -8,18 +8,21 @@ public class PlayerAnimation : MonoBehaviour
     public Animator anim;
     
     private AudioSource source;
+
     private AudioClip walkingSound;
 
-    private bool isSoundPlaying = false;
-
     private GameManager manager;
+
+    private bool isSoundPlaying = false;
 
     void Start ()
     {
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
-        source = manager.gameSoundsSource;
-        walkingSound = manager.playerWalkingSound;
         anim = GetComponent<Animator>();
+
+        source = manager.gameSoundsSource;
+
+        walkingSound = manager.playerWalkingSound;
     }
 	
 	void Update () {

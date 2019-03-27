@@ -9,26 +9,10 @@ public class TimeCounter : MonoBehaviour
     public Text counterValue;
     private bool firstCall = true;
 
-	void Start () {
-		SetTimer();
-	}
-	
-	void Update () {
-		
-	}
-
-    public void SetTimer()
+	void Start ()
     {
-        if(!firstCall)
-        {
-            StopCoroutine(Counter(counterValue));
-        }
-        else
-        {
-            counterValue.text = "" + 0;
-            StartCoroutine(Counter(counterValue));
-        }
-        firstCall = false;
+        counterValue.text = "0";
+        StartCoroutine(Counter(counterValue));
     }
 
     public IEnumerator Counter(Text i)

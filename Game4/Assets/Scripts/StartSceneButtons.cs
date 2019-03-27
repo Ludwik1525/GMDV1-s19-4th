@@ -12,12 +12,18 @@ public class StartSceneButtons : MonoBehaviour
     public Button highscoreButton;
     public Button controlsButton;
     public Button exitButton;
+
     public Button backButton;
     public Button nextButton;
 
     public Button level1;
     public Button level2;
     public Button level3;
+
+    public Text scores1;
+    public Text scores2;
+    public Text scores3;
+
 
     public GameObject menuButtons;
     public GameObject levelSelection;
@@ -27,40 +33,41 @@ public class StartSceneButtons : MonoBehaviour
     public GameObject level2Menu;
     public GameObject level3Menu;
 
-    public AudioSource source;
-    public AudioClip buttonClick;
-    public AudioClip backgroundMusic;
-
     public GameObject paddlock2;
     public GameObject paddlock3;
     public GameObject text2;
     public GameObject text3;
 
+
+    private GameObject levelStatusHolder;
+    private GameObject ScoreHolder;
+
+    public AudioSource source;
+
+    public AudioClip buttonClick;
+    public AudioClip backgroundMusic;
+
+    private LevelUnlocker levelUnlocker;
+    private HighscoreHolder highscoreHolder;
+
+
     public int lvl2unlocked;
     public int lvl3unlocked;
 
-    private GameObject levelStatusHolder;
-    private LevelUnlocker levelUnlocker;
-
-    private GameObject ScoreHolder;
-
-    private HighscoreHolder highscoreHolder;
-    public Text scores1;
-    public Text scores2;
-    public Text scores3;
 
     void Awake()
     {
         levelStatusHolder = GameObject.FindGameObjectWithTag("LevelStatusHolder");
         DontDestroyOnLoad(levelStatusHolder);
+
         ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
         DontDestroyOnLoad(ScoreHolder);
-        DontDestroyOnLoad(levelUnlocker);
     }
 
     void Start ()
     {
-
+        levelUnlocker = levelStatusHolder.GetComponent<LevelUnlocker>();
+        highscoreHolder = ScoreHolder.GetComponent<HighscoreHolder>();
         source = GetComponent<AudioSource>();
 
         menuButtons.gameObject.SetActive(true);
@@ -91,8 +98,6 @@ public class StartSceneButtons : MonoBehaviour
         source.loop = true;
         source.Play();
 
-        levelUnlocker = levelStatusHolder.GetComponent<LevelUnlocker>();
-
         lvl2unlocked = levelUnlocker.isLVL2unlocked;
         lvl3unlocked = levelUnlocker.isLVL3unlocked;
 
@@ -106,52 +111,8 @@ public class StartSceneButtons : MonoBehaviour
             UnlockLVL3();
         }
 
-        highscoreHolder = ScoreHolder.GetComponent<HighscoreHolder>();
-
-        List<KeyValuePair<string, float>> lvl1scores = highscoreHolder.highscore1.ToList();
-
-        lvl1scores.Sort(delegate(KeyValuePair<string, float> pair1, KeyValuePair<string, float> pair2)
-            {
-                return pair2.Value.CompareTo(pair1.Value);
-            });
-
-        List<KeyValuePair<string, float>> lvl2scores = highscoreHolder.highscore2.ToList();
-
-        lvl2scores.Sort(delegate (KeyValuePair<string, float> pair1, KeyValuePair<string, float> pair2)
-        {
-            return pair2.Value.CompareTo(pair1.Value);
-        });
-
-        List<KeyValuePair<string, float>> lvl3scores = highscoreHolder.highscore3.ToList();
-
-        lvl3scores.Sort(delegate (KeyValuePair<string, float> pair1, KeyValuePair<string, float> pair2)
-        {
-            return pair2.Value.CompareTo(pair1.Value);
-        });
-
-        for (int i = 0; i < highscoreHolder.highscore1.ToArray().Length; i++)
-        {
-            scores1.text += lvl1scores[i];
-            scores1.text += "\n";
-        }
-
-        for (int i = 0; i < highscoreHolder.highscore2.ToArray().Length; i++)
-        {
-            scores2.text += lvl2scores[i];
-            scores2.text += "\n";
-        }
-
-        for (int i = 0; i < highscoreHolder.highscore3.ToArray().Length; i++)
-        {
-            scores3.text += lvl3scores[i];
-            scores3.text += "\n";
-        }
+        SortAndSetHighscores();
     }
-	
-	void Update () {
-	
-
-	}
 
     void ChooseLevel()
     {
@@ -209,6 +170,7 @@ public class StartSceneButtons : MonoBehaviour
         level1Menu.gameObject.SetActive(false);
         level2Menu.gameObject.SetActive(false);
         level3Menu.gameObject.SetActive(false);
+
         scores1.gameObject.SetActive(false);
         scores2.gameObject.SetActive(false);
         scores3.gameObject.SetActive(false);
@@ -241,6 +203,7 @@ public class StartSceneButtons : MonoBehaviour
         paddlock2.SetActive(false);
         text2.SetActive(true);
         level2.gameObject.SetActive(true);
+
         level2.GetComponent<Image>().color = Color.green;
     }
 
@@ -249,6 +212,7 @@ public class StartSceneButtons : MonoBehaviour
         paddlock3.SetActive(false);
         text3.SetActive(true);
         level3.gameObject.SetActive(true);
+
         level3.GetComponent<Image>().color = Color.green;
     }
 
@@ -282,6 +246,48 @@ public class StartSceneButtons : MonoBehaviour
             scores1.gameObject.SetActive(true);
             scores2.gameObject.SetActive(false);
             scores3.gameObject.SetActive(false);
+        }
+    }
+
+    void SortAndSetHighscores()
+    {
+        List<KeyValuePair<string, float>> lvl1scores = highscoreHolder.highscore1.ToList();
+
+        lvl1scores.Sort(delegate (KeyValuePair<string, float> pair1, KeyValuePair<string, float> pair2)
+        {
+            return pair2.Value.CompareTo(pair1.Value);
+        });
+
+        List<KeyValuePair<string, float>> lvl2scores = highscoreHolder.highscore2.ToList();
+
+        lvl2scores.Sort(delegate (KeyValuePair<string, float> pair1, KeyValuePair<string, float> pair2)
+        {
+            return pair2.Value.CompareTo(pair1.Value);
+        });
+
+        List<KeyValuePair<string, float>> lvl3scores = highscoreHolder.highscore3.ToList();
+
+        lvl3scores.Sort(delegate (KeyValuePair<string, float> pair1, KeyValuePair<string, float> pair2)
+        {
+            return pair2.Value.CompareTo(pair1.Value);
+        });
+
+        for (int i = 0; i < highscoreHolder.highscore1.ToArray().Length; i++)
+        {
+            scores1.text += lvl1scores[i];
+            scores1.text += "\n";
+        }
+
+        for (int i = 0; i < highscoreHolder.highscore2.ToArray().Length; i++)
+        {
+            scores2.text += lvl2scores[i];
+            scores2.text += "\n";
+        }
+
+        for (int i = 0; i < highscoreHolder.highscore3.ToArray().Length; i++)
+        {
+            scores3.text += lvl3scores[i];
+            scores3.text += "\n";
         }
     }
 }
