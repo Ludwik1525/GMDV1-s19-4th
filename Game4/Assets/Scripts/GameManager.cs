@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
 {
 
     private string configFilePath = "Assets/Resources/config.JSON";
-    private string levelProgressFilePath = "Assets/Resources/levelProgress.JSON";
-    private string highscoreFilePath = "Assets/Resources/highscore.JSON";
 
     [Range(1f, 4f)]
     public float playerSpeed;
@@ -40,8 +38,6 @@ public class GameManager : MonoBehaviour
 
     void Start () {
 		LoadFile(configFilePath);
-        LoadFile(highscoreFilePath);
-        LoadFile(levelProgressFilePath);
 	}
     
     public void LoadFile(string path)

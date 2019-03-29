@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighscoreHolder : MonoBehaviour
+public static class HighscoreHolder
 {
     //dictionaries storing the player nickname and their score
-    public Dictionary<string, float> highscore1;
-    public Dictionary<string, float> highscore2;
-    public Dictionary<string, float> highscore3;
+     
+    public static Dictionary<string, float> highscore1;
+    public static Dictionary<string, float> highscore2;
+    public static Dictionary<string, float> highscore3;
 
-    void Awake ()
+   /* void Awake ()
     {
         //keep the dictionaries between scenes
         highscore1 = new Dictionary<string, float>();
         highscore2 = new Dictionary<string, float>();
         highscore3 = new Dictionary<string, float>();
         DontDestroyOnLoad(this.gameObject);
-    }
+    }*/
 	
 }
