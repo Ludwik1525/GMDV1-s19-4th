@@ -332,7 +332,14 @@ public class StartSceneButtons : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-            scores.Add(PlayerPrefs.GetString("score1Name" + i), PlayerPrefs.GetFloat("score1Value" + i));
+            if (scores.ContainsKey(PlayerPrefs.GetString("score1Name" + i)))
+            {
+                scores[PlayerPrefs.GetString("score1Name" + i)] = PlayerPrefs.GetFloat("score1Value" + i);
+            }
+            else
+            {
+                scores.Add(PlayerPrefs.GetString("score1Name" + i), PlayerPrefs.GetFloat("score1Value" + i));
+            }
         }
 
         HighscoreHolder.highscore1 = scores;
@@ -341,7 +348,14 @@ public class StartSceneButtons : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-            scores.Add(PlayerPrefs.GetString("score2Name" + i), PlayerPrefs.GetFloat("score2Value" + i));
+            if (scores.ContainsKey(PlayerPrefs.GetString("score2Name" + i)))
+            {
+                scores[PlayerPrefs.GetString("score2Name" + i)] = PlayerPrefs.GetFloat("score2Value" + i);
+            }
+            else
+            {
+                scores.Add(PlayerPrefs.GetString("score2Name" + i), PlayerPrefs.GetFloat("score2Value" + i));
+            }
         }
 
         HighscoreHolder.highscore2 = scores;
@@ -350,7 +364,14 @@ public class StartSceneButtons : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-            scores.Add(PlayerPrefs.GetString("score3Name" + i), PlayerPrefs.GetFloat("score3Value" + i));
+            if (scores.ContainsKey(PlayerPrefs.GetString("score3Name" + i)))
+            {
+                scores[PlayerPrefs.GetString("score3Name" + i)] = PlayerPrefs.GetFloat("score3Value" + i);
+            }
+            else
+            {
+                scores.Add(PlayerPrefs.GetString("score3Name" + i), PlayerPrefs.GetFloat("score3Value" + i));
+            }
         }
 
         HighscoreHolder.highscore3 = scores;
