@@ -37,7 +37,6 @@ public class GameplayEventsManager : MonoBehaviour {
 
 
     private GameObject ScoreHolder;
-    private GameObject levelStatusHolder;
 
 
     private GameManager manager;
@@ -57,9 +56,6 @@ public class GameplayEventsManager : MonoBehaviour {
 
     void Awake()
     {
-        levelStatusHolder = GameObject.FindGameObjectWithTag("LevelStatusHolder");
-        DontDestroyOnLoad(levelStatusHolder);
-
         ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
         DontDestroyOnLoad(ScoreHolder);
     }

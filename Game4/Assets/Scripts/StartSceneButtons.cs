@@ -40,7 +40,6 @@ public class StartSceneButtons : MonoBehaviour
     public GameObject text3;
 
 
-    private GameObject levelStatusHolder;
     private GameObject ScoreHolder;
 
     public AudioSource source;
@@ -49,9 +48,8 @@ public class StartSceneButtons : MonoBehaviour
     public AudioClip backgroundMusic;
     
 
-
-    public int lvl2unlocked;
-    public int lvl3unlocked;
+    private int lvl2unlocked;
+    private int lvl3unlocked;
 
 
     void Awake()
@@ -59,9 +57,6 @@ public class StartSceneButtons : MonoBehaviour
         HighscoreHolder.highscore1 = new Dictionary<string, float>();
         HighscoreHolder.highscore2 = new Dictionary<string, float>();
         HighscoreHolder.highscore3 = new Dictionary<string, float>();
-
-        levelStatusHolder = GameObject.FindGameObjectWithTag("LevelStatusHolder");
-        DontDestroyOnLoad(levelStatusHolder);
 
         ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
         DontDestroyOnLoad(ScoreHolder);
