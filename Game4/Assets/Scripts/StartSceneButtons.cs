@@ -46,8 +46,7 @@ public class StartSceneButtons : MonoBehaviour
 
     public AudioClip buttonClick;
     public AudioClip backgroundMusic;
-
-    private LevelUnlocker levelUnlocker;
+    
     private HighscoreHolder highscoreHolder;
 
 
@@ -62,14 +61,11 @@ public class StartSceneButtons : MonoBehaviour
 
         ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
         DontDestroyOnLoad(ScoreHolder);
-
-        lvl2unlocked = PlayerPrefs.GetInt("isLVL2unlocked");
-        lvl3unlocked = PlayerPrefs.GetInt("isLVL3unlocked");
+        
     }
 
     void Start ()
     {
-        levelUnlocker = levelStatusHolder.GetComponent<LevelUnlocker>();
         highscoreHolder = ScoreHolder.GetComponent<HighscoreHolder>();
         source = GetComponent<AudioSource>();
 
@@ -101,15 +97,12 @@ public class StartSceneButtons : MonoBehaviour
         source.loop = true;
         source.Play();
 
-        lvl2unlocked = levelUnlocker.isLVL2unlocked;
-        lvl3unlocked = levelUnlocker.isLVL3unlocked;
-
-        if (lvl2unlocked==1)
+        if (PlayerPrefs.GetInt("lvl2unlocked") == 1)
         {
             UnlockLVL2();
         }
 
-        if (lvl3unlocked==1)
+        if (PlayerPrefs.GetInt("lvl3unlocked") == 1)
         {
             UnlockLVL3();
         }

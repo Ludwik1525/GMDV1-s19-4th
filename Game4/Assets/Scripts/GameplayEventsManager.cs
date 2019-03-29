@@ -41,7 +41,6 @@ public class GameplayEventsManager : MonoBehaviour {
 
     private GameManager manager;
     private TimeCounter timeCounter;
-    private LevelUnlocker levelUnlocker;
     private HighscoreHolder highscoreHolder;
 
 
@@ -56,10 +55,6 @@ public class GameplayEventsManager : MonoBehaviour {
     private bool isPaused = false;
 
 
-    public int lvl2unlocked;
-    public int lvl3unlocked;
-
-
     void Awake()
     {
         levelStatusHolder = GameObject.FindGameObjectWithTag("LevelStatusHolder");
@@ -67,9 +62,6 @@ public class GameplayEventsManager : MonoBehaviour {
 
         ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
         DontDestroyOnLoad(ScoreHolder);
-        
-        lvl2unlocked = PlayerPrefs.GetInt("isLVL2unlocked");
-        lvl3unlocked = PlayerPrefs.GetInt("isLVL3unlocked");
     }
 
     void Start()
@@ -77,7 +69,6 @@ public class GameplayEventsManager : MonoBehaviour {
         Time.timeScale = 1.0f;
 
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
-        levelUnlocker = levelStatusHolder.GetComponent<LevelUnlocker>();
         highscoreHolder = ScoreHolder.GetComponent<HighscoreHolder>();
         timeCounter = GetComponent<TimeCounter>();
 
@@ -167,14 +158,13 @@ public class GameplayEventsManager : MonoBehaviour {
 
         if(SceneManager.GetActiveScene().buildIndex == 1)
         {
-            //levelUnlocker.isLVL2unlocked = 1;
-            PlayerPrefs.SetInt("isLVL2unlocked", 1);
+            
+            PlayerPrefs.SetInt("lvl2unlocked", 1);
             PlayerPrefs.Save();
         }
         if(SceneManager.GetActiveScene().buildIndex == 2)
         {
-            //levelUnlocker.isLVL3unlocked = 1;
-            PlayerPrefs.SetInt("isLVL3unlocked", 1);
+            PlayerPrefs.SetInt("lvl3unlocked", 1);
             PlayerPrefs.Save();
         }
         
