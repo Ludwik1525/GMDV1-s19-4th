@@ -39,52 +39,26 @@ public class GameManager : MonoBehaviour
     public AudioClip levelCompletedSound;
 
     void Start () {
-		LoadConfigFile();
-        LoadHighscoreFile();
-        LoadLevelProgressFile();
+		LoadFile(configFilePath);
+        LoadFile(highscoreFilePath);
+        LoadFile(levelProgressFilePath);
 	}
     
-    public void LoadConfigFile()
+    public void LoadFile(string path)
     {
-        if (File.Exists(configFilePath))
+        if (File.Exists(path))
         {
-            string dataInJson = File.ReadAllText(configFilePath);
+            string dataInJson = File.ReadAllText(path);
             string loadedData = JsonUtility.FromJson<string>(dataInJson);
 
             Debug.Log(dataInJson);
         }
         else
         {
-            Debug.LogError("Config file broken!");
+            Debug.LogError("File broken!");
         }
     }
 
-    public void LoadHighscoreFile()
-    {
-        if (File.Exists(levelProgressFilePath))
-        {
-            string dataInJson = File.ReadAllText(configFilePath);
-            string loadedData = JsonUtility.FromJson<string>(dataInJson);
-            
-        }
-        else
-        {
-            Debug.LogError("Highscore file broken!");
-        }
-    }
 
-    public void LoadLevelProgressFile()
-    {
-        if (File.Exists(highscoreFilePath))
-        {
-            string dataInJson = File.ReadAllText(configFilePath);
-            string loadedData = JsonUtility.FromJson<string>(dataInJson);
-            
-        }
-        else
-        {
-            Debug.LogError("LevelProgress file broken!");
-        }
-    }
 
 }

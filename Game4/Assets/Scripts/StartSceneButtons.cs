@@ -62,6 +62,9 @@ public class StartSceneButtons : MonoBehaviour
 
         ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
         DontDestroyOnLoad(ScoreHolder);
+
+        lvl2unlocked = PlayerPrefs.GetInt("isLVL2unlocked");
+        lvl3unlocked = PlayerPrefs.GetInt("isLVL3unlocked");
     }
 
     void Start ()
@@ -290,4 +293,6 @@ public class StartSceneButtons : MonoBehaviour
             scores3.text += "\n";
         }
     }
+
+
 }
