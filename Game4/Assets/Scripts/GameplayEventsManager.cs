@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -36,13 +37,10 @@ public class GameplayEventsManager : MonoBehaviour {
 
 
     private GameObject ScoreHolder;
-    private GameObject levelStatusHolder;
 
 
     private GameManager manager;
     private TimeCounter timeCounter;
-    private LevelUnlocker levelUnlocker;
-    private HighscoreHolder highscoreHolder;
 
 
     [HideInInspector]
@@ -58,21 +56,8 @@ public class GameplayEventsManager : MonoBehaviour {
 
     void Awake()
     {
-        levelStatusHolder = GameObject.FindGameObjectWithTag("LevelStatusHolder");
-        DontDestroyOnLoad(levelStatusHolder);
-
         ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
         DontDestroyOnLoad(ScoreHolder);
-
-        levelUnlocker = LevelPersistence.LoadData();
-
-        isLVL2unlocked = levelUnlocker.isLVL2unlocked;
-        isLVL3unlocked = levelUnlocker.isLVL3unlocked;
-    }
-
-    void OnDisable()
-    {
-        LevelPersistence.SaveData(isLVL2unlocked, isLVL3unlocked);
     }
 
     void Start()
@@ -80,8 +65,6 @@ public class GameplayEventsManager : MonoBehaviour {
         Time.timeScale = 1.0f;
 
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
-        levelUnlocker = levelStatusHolder.GetComponent<LevelUnlocker>();
-        highscoreHolder = ScoreHolder.GetComponent<HighscoreHolder>();
         timeCounter = GetComponent<TimeCounter>();
 
         backgroundMusicSource = manager.backgroundMusicSource;
@@ -170,12 +153,16 @@ public class GameplayEventsManager : MonoBehaviour {
 
         if(SceneManager.GetActiveScene().buildIndex == 1)
         {
-            levelUnlocker.isLVL2unlocked = 1;
+            
+            PlayerPrefs.SetInt("lvl2unlocked", 1);
+            PlayerPrefs.Save();
         }
         if(SceneManager.GetActiveScene().buildIndex == 2)
         {
-            levelUnlocker.isLVL3unlocked = 1;
+            PlayerPrefs.SetInt("lvl3unlocked", 1);
+            PlayerPrefs.Save();
         }
+        
 
         Time.timeScale = 0.0f;
     }
@@ -238,18 +225,49 @@ public class GameplayEventsManager : MonoBehaviour {
                 savedInfo.SetActive(true);
                 if (SceneManager.GetActiveScene().buildIndex == 1)
                 {
-                    highscoreHolder.highscore1.Add(nameInput.text, CalculateScore());
+                    HighscoreHolder.highscore1.Add(nameInput.text, CalculateScore());
                 }
                 else if (SceneManager.GetActiveScene().buildIndex == 2)
                 {
-                    highscoreHolder.highscore2.Add(nameInput.text, CalculateScore());
+                    HighscoreHolder.highscore2.Add(nameInput.text, CalculateScore());
                 }
                 else if (SceneManager.GetActiveScene().buildIndex == 3)
                 {
-                    highscoreHolder.highscore3.Add(nameInput.text, CalculateScore());
+                    HighscoreHolder.highscore3.Add(nameInput.text, CalculateScore());
                 }
                 isScoreSaved = true;
             }
         }
     }
+
+    private void OnApplicationQuit()
+    {
+        List<KeyValuePair<string, float>> lvl1scores = HighscoreHolder.highscore1.ToList();
+
+        for (int i = 0; i < HighscoreHolder.highscore1.ToArray().Length; i++)
+        {
+            PlayerPrefs.SetString("score1Name" + i ,lvl1scores[i].Key);
+            PlayerPrefs.SetFloat("score1Value" + i, lvl1scores[i].Value);
+        }
+
+        List<KeyValuePair<string, float>> lvl2scores = HighscoreHolder.highscore2.ToList();
+
+        for (int i = 0; i < HighscoreHolder.highscore2.ToArray().Length; i++)
+        {
+            PlayerPrefs.SetString("score2Name" + i, lvl2scores[i].Key);
+            PlayerPrefs.SetFloat("score2Value" + i, lvl2scores[i].Value);
+        }
+
+        List<KeyValuePair<string, float>> lvl3scores = HighscoreHolder.highscore3.ToList();
+
+        for (int i = 0; i < HighscoreHolder.highscore3.ToArray().Length; i++)
+        {
+            PlayerPrefs.SetString("score3Name" + i, lvl3scores[i].Key);
+            PlayerPrefs.SetFloat("score3Value" + i, lvl3scores[i].Value);
+        }
+
+        PlayerPrefs.Save();
+    }
+
+    
 }

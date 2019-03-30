@@ -11,6 +11,7 @@ public class StartSceneButtons : MonoBehaviour
     public Button newGameButton;
     public Button highscoreButton;
     public Button controlsButton;
+    public Button resetButton;
     public Button exitButton;
 
     public Button backButton;
@@ -39,35 +40,32 @@ public class StartSceneButtons : MonoBehaviour
     public GameObject text3;
 
 
-    private GameObject levelStatusHolder;
     private GameObject ScoreHolder;
 
     public AudioSource source;
 
     public AudioClip buttonClick;
     public AudioClip backgroundMusic;
+    
 
-    private LevelUnlocker levelUnlocker;
-    private HighscoreHolder highscoreHolder;
-
-
-    public int lvl2unlocked;
-    public int lvl3unlocked;
+    private int lvl2unlocked;
+    private int lvl3unlocked;
 
 
     void Awake()
     {
-        levelStatusHolder = GameObject.FindGameObjectWithTag("LevelStatusHolder");
-        DontDestroyOnLoad(levelStatusHolder);
+        HighscoreHolder.highscore1 = new Dictionary<string, float>();
+        HighscoreHolder.highscore2 = new Dictionary<string, float>();
+        HighscoreHolder.highscore3 = new Dictionary<string, float>();
 
         ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
         DontDestroyOnLoad(ScoreHolder);
+        LoadScore();
     }
 
     void Start ()
     {
-        levelUnlocker = levelStatusHolder.GetComponent<LevelUnlocker>();
-        highscoreHolder = ScoreHolder.GetComponent<HighscoreHolder>();
+        
         source = GetComponent<AudioSource>();
 
         menuButtons.gameObject.SetActive(true);
@@ -86,6 +84,7 @@ public class StartSceneButtons : MonoBehaviour
         newGameButton.onClick.AddListener(ChooseLevel);
         highscoreButton.onClick.AddListener(OpenHighScore);
         controlsButton.onClick.AddListener(OpenControls);
+        resetButton.onClick.AddListener(ResetProgress);
         exitButton.onClick.AddListener(ExitGame);
         backButton.onClick.AddListener(BackToMenu);
         nextButton.onClick.AddListener(NextHighscore);
@@ -98,18 +97,8 @@ public class StartSceneButtons : MonoBehaviour
         source.loop = true;
         source.Play();
 
-        lvl2unlocked = levelUnlocker.isLVL2unlocked;
-        lvl3unlocked = levelUnlocker.isLVL3unlocked;
-
-        if (lvl2unlocked==1)
-        {
-            UnlockLVL2();
-        }
-
-        if (lvl3unlocked==1)
-        {
-            UnlockLVL3();
-        }
+        LoadProgress();
+        LoadScore();
 
         SortAndSetHighscores();
     }
@@ -216,6 +205,22 @@ public class StartSceneButtons : MonoBehaviour
         level3.GetComponent<Image>().color = Color.green;
     }
 
+    public void LockLVL2()
+    {
+        paddlock2.SetActive(true);
+        text2.SetActive(false);
+
+        level2.GetComponent<Image>().color = Color.red;
+    }
+
+    public void LockLVL3()
+    {
+        paddlock3.SetActive(true);
+        text3.SetActive(false);
+
+        level3.GetComponent<Image>().color = Color.red;
+    }
+
     public void NextHighscore()
     {
         source.PlayOneShot(buttonClick);
@@ -249,45 +254,123 @@ public class StartSceneButtons : MonoBehaviour
         }
     }
 
+    public void ResetProgress()
+    {
+        PlayerPrefs.SetInt("lvl2unlocked", 0);
+        PlayerPrefs.Save();
+
+        PlayerPrefs.SetInt("lvl3unlocked", 0);
+        PlayerPrefs.Save();
+        LockLVL2();
+        LockLVL3();
+        LoadProgress();
+    }
+
+    public void LoadProgress()
+    {
+        if (PlayerPrefs.GetInt("lvl2unlocked") == 1)
+        {
+            UnlockLVL2();
+        }
+
+        if (PlayerPrefs.GetInt("lvl3unlocked") == 1)
+        {
+            UnlockLVL3();
+        }
+    }
+
     void SortAndSetHighscores()
     {
-        List<KeyValuePair<string, float>> lvl1scores = highscoreHolder.highscore1.ToList();
+        List<KeyValuePair<string, float>> lvl1scores = HighscoreHolder.highscore1.ToList();
 
         lvl1scores.Sort(delegate (KeyValuePair<string, float> pair1, KeyValuePair<string, float> pair2)
         {
             return pair2.Value.CompareTo(pair1.Value);
         });
 
-        List<KeyValuePair<string, float>> lvl2scores = highscoreHolder.highscore2.ToList();
+        List<KeyValuePair<string, float>> lvl2scores = HighscoreHolder.highscore2.ToList();
 
         lvl2scores.Sort(delegate (KeyValuePair<string, float> pair1, KeyValuePair<string, float> pair2)
         {
             return pair2.Value.CompareTo(pair1.Value);
         });
 
-        List<KeyValuePair<string, float>> lvl3scores = highscoreHolder.highscore3.ToList();
+        List<KeyValuePair<string, float>> lvl3scores = HighscoreHolder.highscore3.ToList();
 
         lvl3scores.Sort(delegate (KeyValuePair<string, float> pair1, KeyValuePair<string, float> pair2)
         {
             return pair2.Value.CompareTo(pair1.Value);
         });
 
-        for (int i = 0; i < highscoreHolder.highscore1.ToArray().Length; i++)
+        for (int i = 0; i < HighscoreHolder.highscore1.ToArray().Length; i++)
         {
             scores1.text += lvl1scores[i];
             scores1.text += "\n";
         }
 
-        for (int i = 0; i < highscoreHolder.highscore2.ToArray().Length; i++)
+        for (int i = 0; i < HighscoreHolder.highscore2.ToArray().Length; i++)
         {
             scores2.text += lvl2scores[i];
             scores2.text += "\n";
         }
 
-        for (int i = 0; i < highscoreHolder.highscore3.ToArray().Length; i++)
+        for (int i = 0; i < HighscoreHolder.highscore3.ToArray().Length; i++)
         {
             scores3.text += lvl3scores[i];
             scores3.text += "\n";
         }
     }
+
+    private void LoadScore()
+    {
+        Dictionary<string, float> scores = new Dictionary<string, float>();
+
+        for (int i = 0; i < 10; i++)
+        {
+            if (scores.ContainsKey(PlayerPrefs.GetString("score1Name" + i)))
+            {
+                scores[PlayerPrefs.GetString("score1Name" + i)] = PlayerPrefs.GetFloat("score1Value" + i);
+            }
+            else
+            {
+                scores.Add(PlayerPrefs.GetString("score1Name" + i), PlayerPrefs.GetFloat("score1Value" + i));
+            }
+        }
+
+        HighscoreHolder.highscore1 = scores;
+
+        scores = new Dictionary<string, float>();
+
+        for (int i = 0; i < 10; i++)
+        {
+            if (scores.ContainsKey(PlayerPrefs.GetString("score2Name" + i)))
+            {
+                scores[PlayerPrefs.GetString("score2Name" + i)] = PlayerPrefs.GetFloat("score2Value" + i);
+            }
+            else
+            {
+                scores.Add(PlayerPrefs.GetString("score2Name" + i), PlayerPrefs.GetFloat("score2Value" + i));
+            }
+        }
+
+        HighscoreHolder.highscore2 = scores;
+
+        scores = new Dictionary<string, float>();
+
+        for (int i = 0; i < 10; i++)
+        {
+            if (scores.ContainsKey(PlayerPrefs.GetString("score3Name" + i)))
+            {
+                scores[PlayerPrefs.GetString("score3Name" + i)] = PlayerPrefs.GetFloat("score3Value" + i);
+            }
+            else
+            {
+                scores.Add(PlayerPrefs.GetString("score3Name" + i), PlayerPrefs.GetFloat("score3Value" + i));
+            }
+        }
+
+        HighscoreHolder.highscore3 = scores;
+    }
+
+
 }
