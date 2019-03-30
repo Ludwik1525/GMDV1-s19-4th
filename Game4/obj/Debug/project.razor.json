@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "c:\\Users\\Rome\\Documents\\Unity projects\\Github Repos\\Gmd\\Catter 4th\\GMDV1-s19-4th\\Game4\\Assembly-CSharp.csproj",
+  "TargetFramework": "v3.5",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}

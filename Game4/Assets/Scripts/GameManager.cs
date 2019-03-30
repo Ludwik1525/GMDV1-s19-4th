@@ -9,7 +9,7 @@ using Debug = UnityEngine.Debug;
 [System.Serializable]
 public class GameManager : MonoBehaviour
 {
-
+    
     private string configFilePath = "Assets/Resources/config.JSON";
     private string levelProgressFilePath = "Assets/Resources/levelProgress.JSON";
     private string highscoreFilePath = "Assets/Resources/highscore.JSON";
@@ -39,52 +39,54 @@ public class GameManager : MonoBehaviour
     public AudioClip levelCompletedSound;
 
     void Start () {
-		LoadConfigFile();
-        LoadHighscoreFile();
-        LoadLevelProgressFile();
+		
+    //    LoadFile(configFilePath);
+       LoadFile(highscoreFilePath);
+       LoadFile(levelProgressFilePath);
+
+       saveJson(configFilePath);
+
 	}
     
-    public void LoadConfigFile()
-    {
-        if (File.Exists(configFilePath))
-        {
-            string dataInJson = File.ReadAllText(configFilePath);
-            string loadedData = JsonUtility.FromJson<string>(dataInJson);
+   
 
-            Debug.Log(dataInJson);
-        }
-        else
-        {
-            Debug.LogError("Config file broken!");
-        }
-    }
-
-    public void LoadHighscoreFile()
+    public void LoadFile(string path)
     {
-        if (File.Exists(levelProgressFilePath))
+        if (File.Exists(path))
         {
-            string dataInJson = File.ReadAllText(configFilePath);
+            string dataInJson = File.ReadAllText(path);
             string loadedData = JsonUtility.FromJson<string>(dataInJson);
             
         }
         else
         {
-            Debug.LogError("Highscore file broken!");
+            Debug.LogError("File broken!");
         }
     }
 
-    public void LoadLevelProgressFile()
-    {
-        if (File.Exists(highscoreFilePath))
+    public void saveJson(string path){
+        JsonTesting test = new JsonTesting();
+        string [] jsonArray = new string [3];
+
+        if (File.Exists(path))
         {
-            string dataInJson = File.ReadAllText(configFilePath);
-            string loadedData = JsonUtility.FromJson<string>(dataInJson);
-            
+
+        test.testFloat = 0.5f; 
+        jsonArray[0] = test.testFloat.ToString();
+        test.testString = "Goodbye world";
+        jsonArray[1] = test.testString;
+        test.testInt = 60;
+        jsonArray[2] = test.testInt.ToString();
+
+           
+           File.WriteAllLines(path,jsonArray);
+           print(File.ReadAllLines(path));
         }
-        else
-        {
-            Debug.LogError("LevelProgress file broken!");
-        }
+
+        print(JsonUtility.ToJson(test));
+
     }
+
+    
 
 }
