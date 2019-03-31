@@ -15,6 +15,7 @@ TagManager:
   - Spider
   - EnemyRow
   - StartRow
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

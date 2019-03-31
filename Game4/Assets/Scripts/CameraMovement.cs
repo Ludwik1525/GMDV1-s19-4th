@@ -9,6 +9,11 @@ public class CameraMovement : MonoBehaviour {
 
     void Start () {
 
+    }
+
+    void Update()
+    {
+
         player=GameObject.FindGameObjectWithTag("Player");
 
         offset = transform.position - player.transform.position;
