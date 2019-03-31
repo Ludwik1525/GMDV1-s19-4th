@@ -30,10 +30,10 @@ public class BoardManager : MonoBehaviour {
 
         //Prefab containers
         // public GameObject floorTiles;                                 //Array of floor prefabs.
-        public GameObject start;
-        public GameObject checkPoint;                                  //Array of checkpoint prefabs - should have collider for saving the score on collenter -> set rgbd2d to is trigger.
-        public GameObject end;
+        public GameObject start,checkpoint,end, outerWallStart,outerWallSide;
+        
         public GameObject enemy, player;
+        
         public GameObject [] enemies;
                                         //Array of enemy prefabs.
         // public GameObject outerWallTiles;                             //Array of outer tile prefabs.
@@ -55,35 +55,60 @@ public class BoardManager : MonoBehaviour {
                 int testingStuff = rows / 3;
                 
 
-                for(int i = 0; i < rows + 1; i++)
+                        GameObject toInstantiate = null;
+                for(int i = 0; i <= rows + 1; i++)
                 {
                         
                 Vector3 offset = new Vector3(0,heightOfRow,0);
 
-                        GameObject toInstantiate = null;
                         if(i == 0)
                         {                               
+                                toInstantiate = outerWallStart;
+                        }
+                        else if(i == 1)
+                        {
                                 toInstantiate = start;
                         }
                         else if (i == rows)
                         {
                                 toInstantiate = end;
-                        }
-
-                        
+                        }                        
                         else if(rows >= 10 && i == midpoint - 3|| rows >= 10 && i == midpoint + 2)
                         {
-                                toInstantiate = checkPoint;
+                                toInstantiate = checkpoint;
                         } 
                         else if (rows <= 10 && i == (rows / 2))
                         {
-                                toInstantiate = checkPoint;
+                                toInstantiate = checkpoint;
+                        }
+                        
+                        else if (i == rows +1)
+                        {       
+                                
+                                float x = toInstantiate.transform.localScale.x / 2;
+                                float y = (rows * 100) / 2;
+                                float scale = rows * 100;
+
+                                Vector3 rightOuter = new Vector2(x,y);
+                                Vector3 leftOuter = new Vector2(-x,y);
+                                toInstantiate = outerWallSide;
+                                toInstantiate.transform.localScale = new Vector2(50,scale);
+                                
+                                //2nd instantiaten of outer side walls
+                                GameObject instance =
+                        Instantiate (toInstantiate, rightOuter,Quaternion.identity) as GameObject;
+                        instance.transform.SetParent(boardContainer);
+
+                        instance =
+                        Instantiate (toInstantiate, leftOuter,Quaternion.identity) as GameObject;
+                        instance.transform.SetParent(boardContainer);
+
+                        toInstantiate = null;
                         }
                         else 
                         {                        
                         toInstantiate = enemy;
                         }
-
 
                         if(toInstantiate)
                         {
@@ -96,6 +121,7 @@ public class BoardManager : MonoBehaviour {
                         }
                         
                 }
+                //difficulty setting
                 rows = (int)1.5f * rows;
                 Spawn(); 
         }
@@ -104,13 +130,14 @@ public class BoardManager : MonoBehaviour {
                 enemyContainer = new GameObject("EnemyContainer").transform;
                 GameObject toInstantiate = null;
                 foreach(Transform enemyRow in boardContainer)
-                {
-                        print(enemyRow.CompareTag("EnemyRow"));
+                {                       
                         if(enemyRow.CompareTag("EnemyRow")){
                                 toInstantiate = enemies[Random.Range(0,enemies.Length)];
                         GameObject instance = Instantiate(toInstantiate,enemyRow.position,Quaternion.identity) as GameObject;
                         instance.transform.SetParent(enemyContainer);
-                        }else if (enemyRow.CompareTag("StartRow")){
+                        }
+                        else if (enemyRow.CompareTag("StartRow"))
+                        {
                                 toInstantiate = player;
                         GameObject instance = Instantiate(toInstantiate,enemyRow.position,Quaternion.identity) as GameObject;
                         }

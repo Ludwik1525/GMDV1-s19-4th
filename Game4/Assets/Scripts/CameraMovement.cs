@@ -13,14 +13,18 @@ public class CameraMovement : MonoBehaviour {
 
     void Update()
     {
-
+        if(GameObject.FindGameObjectWithTag("Player")){          
         player=GameObject.FindGameObjectWithTag("Player");
 
         offset = transform.position - player.transform.position;
+        }
     }
 
     void LateUpdate()
     {
-        transform.position = player.transform.position + new Vector3(offset.x, offset.y, -5);
+       
+        // new Vector3(offset.x, offset.y, -5)
+        transform.position = player.transform.position + new Vector3(0, 0, -5);
+        
     }
 }

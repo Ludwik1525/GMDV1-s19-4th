@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\StartSceneButtons.cs" />
      <Compile Include="Assets\Scripts\TimeCounter.cs" />
+     <None Include="Assets\Medieval_pixel_art_asset_FREE\pixel_snapping_README.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Rome/Documents/Unity projects/Github Repos/Gmd/Catter 4th/GMDV1-s19-4th/Game4/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
