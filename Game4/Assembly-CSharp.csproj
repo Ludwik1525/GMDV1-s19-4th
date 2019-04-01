@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\GameplayEventsManager.cs" />
      <Compile Include="Assets\Scripts\HighscoreHolder.cs" />
      <Compile Include="Assets\Scripts\JsonTesting.cs" />
+     <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
      <Compile Include="Assets\Scripts\PlayerEventsManager.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />

@@ -23,7 +23,7 @@ public class BoardManager : MonoBehaviour {
 
 
         //static int to make it belong to the class and not the specific instance of it. Should make rows persist right?
-        public static int rows = 19;
+        public static int rows = 7;
         
         //might use this
         // public Count checkpoints = new Count (1, 2);                      //Lower and upper limit for our random number of walls per level.

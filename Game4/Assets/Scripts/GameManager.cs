@@ -9,7 +9,7 @@ using Debug = UnityEngine.Debug;
 [System.Serializable]
 public class GameManager : MonoBehaviour
 {
-    
+    public static GameManager instance = null;
     private string configFilePath = "Assets/Resources/config.JSON";
 
     [Range(1f, 4f)]
@@ -36,6 +36,16 @@ public class GameManager : MonoBehaviour
     public AudioClip playerDeathSound;
     public AudioClip levelCompletedSound;
 
+
+    void Awake()
+    {
+        if(instance == null){
+            instance = this;
+        }else if (instance != this)
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+
+    }
     void Start () {
 		LoadFile(configFilePath);
 	}

@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1146371124976960}
+  m_IsPrefabAsset: 1
+--- !u!1 &1146371124976960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4864715060177800}
+  - component: {fileID: 114796060164023124}
+  - component: {fileID: 114310539296602558}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4864715060177800
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1146371124976960}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -84.1569, y: 131.62637, z: -2.8598254}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114310539296602558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1146371124976960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9b71e0273c4f54b8e96d3a32222b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 0
+  wormsSpeed: 0
+  golemSpeed: 0
+  blackmanSpeed: 0
+  skeletonSpeed: 0
+  flameSpeed: 0
+  spiderSpeed: 0
+  gameSoundsSource: {fileID: 0}
+  gameSoundsSource1: {fileID: 0}
+  backgroundMusicSource: {fileID: 0}
+  playerWalkingSound: {fileID: 0}
+  playerReceiveDMGSound: {fileID: 0}
+  playerDeathSound: {fileID: 0}
+  levelCompletedSound: {fileID: 0}
+--- !u!114 &114796060164023124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1146371124976960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 248527f317488b243b302640741fb297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: {fileID: 0}
+  checkpoint: {fileID: 0}
+  end: {fileID: 0}
+  outerWallStart: {fileID: 0}
+  outerWallSide: {fileID: 0}
+  enemy: {fileID: 0}
+  player: {fileID: 0}
+  enemies:
+  - {fileID: 1399617490887500, guid: a3951870c34e0cc4cb97aadb0c86ce05, type: 2}
+  - {fileID: 1168384520179402, guid: 00ab9928936e12547a232e5653d67810, type: 2}
+  - {fileID: 1774636978968972, guid: e9c7ee77ccd4f384fbf191b870a5319c, type: 2}
+  - {fileID: 1819902452607788, guid: c74bcf9f83a7e194abc496793b0278fd, type: 2}
+  - {fileID: 1346078572075726, guid: 5a1766948f07305489936e05f097359c, type: 2}
+  - {fileID: 1643865232249472, guid: e59170d18a9a9cf48a5ec5e376110a14, type: 2}
