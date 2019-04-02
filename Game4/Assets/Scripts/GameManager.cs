@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private string configFilePath = "Assets/Resources/config.JSON";
     private string dataInJson;
 
+    private Speed speed;
+
     [Range(1f, 4f)]
     public float playerSpeed;
     [Range(1f, 4f)]
@@ -48,25 +50,55 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
     }
-    void Start () {
-		LoadFile(configFilePath);
+    void Start ()
+    {
+        speed = new Speed();
+        LoadFile(configFilePath);
 	}
-    
+
     public void LoadFile(string path)
     {
-        if (File.Exists(path))
+        //       if (!string.IsNullOrEmpty(path))
+        if (speed.firstTime == false)
         {
-            dataInJson = File.ReadAllText(path);           
 
+            dataInJson = File.ReadAllText(path);
+            speed = JsonUtility.FromJson<Speed>(dataInJson);
+
+            playerSpeed = speed.playerSpeed;
+            wormsSpeed = speed.wormsSpeed;
+            golemSpeed = speed.golemSpeed;
+            blackmanSpeed = speed.blackmanSpeed;
+            skeletonSpeed = speed.blackmanSpeed;
+            flameSpeed = speed.flameSpeed;
+            spiderSpeed = speed.spiderSpeed;
+
+            //           dataInJson = JsonUtility.ToJson(string.Empty);
+            //          File.WriteAllText(path, dataInJson);
         }
         else
         {
-            Debug.LogError("File broken!");
+            speed.firstTime = false;
         }
+    }
+
+    public void SaveFile(string path)
+    {
+        speed.blackmanSpeed = blackmanSpeed;
+        speed.flameSpeed = flameSpeed;
+        speed.golemSpeed = golemSpeed;
+        speed.playerSpeed = playerSpeed;
+        speed.spiderSpeed = spiderSpeed;
+        speed.wormsSpeed = wormsSpeed;
+        speed.skeletonSpeed = skeletonSpeed;
+
+        dataInJson = JsonUtility.ToJson(speed, false);
+        File.WriteAllText(path, dataInJson);
     }
 
 
 
-    
+
+
 
 }

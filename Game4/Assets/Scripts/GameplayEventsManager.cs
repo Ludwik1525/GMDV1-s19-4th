@@ -42,6 +42,8 @@ public class GameplayEventsManager : MonoBehaviour {
     private GameManager manager;
     private TimeCounter timeCounter;
 
+    private string filePath = "Assets/Resources/config.JSON";
+
 
     [HideInInspector]
     public int lives;
@@ -253,5 +255,6 @@ public class GameplayEventsManager : MonoBehaviour {
             }
 
             PlayerPrefs.Save();
+            manager.SaveFile(filePath);
     }
 }
