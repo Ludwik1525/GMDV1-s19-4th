@@ -142,7 +142,6 @@ public class GameplayEventsManager : MonoBehaviour {
 
     public void DisplayWinScreen()
     {
-        GameObject.FindGameObjectWithTag("Player").SetActive(false);
         winScreen.gameObject.SetActive(true);
         menu.gameObject.SetActive(true);
         tryAgain.gameObject.SetActive(true);
@@ -219,8 +218,6 @@ public class GameplayEventsManager : MonoBehaviour {
 
     public void SaveScore()
     {
-        // if(!isScoreSaved)
-        // {
             if(nameInput.text!="")
             {
                 savedInfo.SetActive(true);
@@ -236,41 +233,32 @@ public class GameplayEventsManager : MonoBehaviour {
                 {
                     HighscoreHolder.highscore3.Add(nameInput.text, CalculateScore());
                 }
-            //     isScoreSaved = true;
-            // }
-        }
-    }
+            }
 
-    private void OnApplicationQuit()
-    {
+            List<KeyValuePair<string, float>> lvl1scores = HighscoreHolder.highscore1.ToList();
         
-        List<KeyValuePair<string, float>> lvl1scores = HighscoreHolder.highscore1.ToList();
+            for (int i = 0; i < HighscoreHolder.highscore1.ToArray().Length; i++)
+            {
+                PlayerPrefs.SetString("score1Name" + i, lvl1scores[i].Key);
+                PlayerPrefs.SetFloat("score1Value" + i, lvl1scores[i].Value);
+            }
 
-            print(HighscoreHolder.highscore1 + "what the fudge");
-        for (int i = 0; i < HighscoreHolder.highscore1.ToArray().Length; i++)
-        {
-            PlayerPrefs.SetString("score1Name" + i ,lvl1scores[i].Key);
-            PlayerPrefs.SetFloat("score1Value" + i, lvl1scores[i].Value);
-        }
+            List<KeyValuePair<string, float>> lvl2scores = HighscoreHolder.highscore2.ToList();
 
-        List<KeyValuePair<string, float>> lvl2scores = HighscoreHolder.highscore2.ToList();
+            for (int i = 0; i < HighscoreHolder.highscore2.ToArray().Length; i++)
+            {
+                PlayerPrefs.SetString("score2Name" + i, lvl2scores[i].Key);
+                PlayerPrefs.SetFloat("score2Value" + i, lvl2scores[i].Value);
+            }
 
-        for (int i = 0; i < HighscoreHolder.highscore2.ToArray().Length; i++)
-        {
-            PlayerPrefs.SetString("score2Name" + i, lvl2scores[i].Key);
-            PlayerPrefs.SetFloat("score2Value" + i, lvl2scores[i].Value);
-        }
+            List<KeyValuePair<string, float>> lvl3scores = HighscoreHolder.highscore3.ToList();
 
-        List<KeyValuePair<string, float>> lvl3scores = HighscoreHolder.highscore3.ToList();
+            for (int i = 0; i < HighscoreHolder.highscore3.ToArray().Length; i++)
+            {
+                PlayerPrefs.SetString("score3Name" + i, lvl3scores[i].Key);
+                PlayerPrefs.SetFloat("score3Value" + i, lvl3scores[i].Value);
+            }
 
-        for (int i = 0; i < HighscoreHolder.highscore3.ToArray().Length; i++)
-        {
-            PlayerPrefs.SetString("score3Name" + i, lvl3scores[i].Key);
-            PlayerPrefs.SetFloat("score3Value" + i, lvl3scores[i].Value);
-        }
-        
-        PlayerPrefs.Save();
+            PlayerPrefs.Save();
     }
-
-    
 }

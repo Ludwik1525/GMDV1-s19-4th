@@ -38,10 +38,14 @@ public class BoardManager : MonoBehaviour {
 
          private Transform boardContainer, enemyContainer;                                  //A variable to store a reference to the transform of our Board object.
 
+             void Start()
+         {
+             setupBoard();
+         }
+
         public void setRows(int row){
                 rows = row;
-        }
-       
+            }
 
         public void setupBoard(int NextLevel){
 
@@ -149,10 +153,6 @@ public class BoardManager : MonoBehaviour {
         }
         }
 
-
-       void Start(){
-               setupBoard(2);
-       }
 
       
 
