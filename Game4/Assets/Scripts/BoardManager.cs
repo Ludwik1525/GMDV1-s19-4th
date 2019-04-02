@@ -81,7 +81,7 @@ public class BoardManager : MonoBehaviour {
                         else if (i == rows +1)
                         {       
                                 
-                                float x = toInstantiate.transform.localScale.x / 2;
+                                float x = toInstantiate.transform.localScale.x*3;
                                 float y = (rows * 10) / 2;
                                 float scale = rows * 8;
 
