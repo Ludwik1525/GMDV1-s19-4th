@@ -19,6 +19,4 @@ public class Speed
     public float flameSpeed;
     [Range(1f, 6f)]
     public float spiderSpeed;
-
-    public bool firstTime = true;
 }

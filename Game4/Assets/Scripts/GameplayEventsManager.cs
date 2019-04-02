@@ -93,6 +93,8 @@ public class GameplayEventsManager : MonoBehaviour {
 
     void Update()
     {
+
+        manager.SaveFile(filePath);
         timePassed = int.Parse(timeCounter.counterValue.text);
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -255,6 +257,5 @@ public class GameplayEventsManager : MonoBehaviour {
             }
 
             PlayerPrefs.Save();
-            manager.SaveFile(filePath);
     }
 }

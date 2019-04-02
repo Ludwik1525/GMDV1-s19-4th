@@ -16,19 +16,19 @@ public class GameManager : MonoBehaviour
 
     private Speed speed;
 
-    [Range(1f, 4f)]
+    [HideInInspector]
     public float playerSpeed;
-    [Range(1f, 4f)]
+    [HideInInspector]
     public float wormsSpeed;
-    [Range(1f, 3f)]
+    [HideInInspector]
     public float golemSpeed;
-    [Range(1f, 6f)]
+    [HideInInspector]
     public float blackmanSpeed;
-    [Range(1f, 5f)]
+    [HideInInspector]
     public float skeletonSpeed;
-    [Range(3f, 8f)]
+    [HideInInspector]
     public float flameSpeed;
-    [Range(1f, 6f)]
+    [HideInInspector]
     public float spiderSpeed;
 
     public AudioSource gameSoundsSource;
@@ -51,17 +51,12 @@ public class GameManager : MonoBehaviour
 
     }
     void Start ()
-    {
-        speed = new Speed();
+    {  speed=new Speed();
         LoadFile(configFilePath);
 	}
 
     public void LoadFile(string path)
     {
-        //       if (!string.IsNullOrEmpty(path))
-        if (speed.firstTime == false)
-        {
-
             dataInJson = File.ReadAllText(path);
             speed = JsonUtility.FromJson<Speed>(dataInJson);
 
@@ -73,13 +68,8 @@ public class GameManager : MonoBehaviour
             flameSpeed = speed.flameSpeed;
             spiderSpeed = speed.spiderSpeed;
 
-            //           dataInJson = JsonUtility.ToJson(string.Empty);
-            //          File.WriteAllText(path, dataInJson);
-        }
-        else
-        {
-            speed.firstTime = false;
-        }
+            print(playerSpeed);
+
     }
 
     public void SaveFile(string path)
