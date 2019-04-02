@@ -7,10 +7,6 @@ public class CameraMovement : MonoBehaviour {
     private GameObject player;
     private Vector3 offset;
 
-    void Start () {
-
-    }
-
     void Update()
     {
         if(GameObject.FindGameObjectWithTag("Player")){          
@@ -22,8 +18,6 @@ public class CameraMovement : MonoBehaviour {
 
     void LateUpdate()
     {
-       
-        // new Vector3(offset.x, offset.y, -5)
         transform.position = player.transform.position + new Vector3(0, 0, -5);
         
     }

@@ -9,14 +9,5 @@ public static class HighscoreHolder
     public static Dictionary<string, float> highscore1;
     public static Dictionary<string, float> highscore2;
     public static Dictionary<string, float> highscore3;
-
-   /* void Awake ()
-    {
-        //keep the dictionaries between scenes
-        highscore1 = new Dictionary<string, float>();
-        highscore2 = new Dictionary<string, float>();
-        highscore3 = new Dictionary<string, float>();
-        DontDestroyOnLoad(this.gameObject);
-    }*/
 	
 }

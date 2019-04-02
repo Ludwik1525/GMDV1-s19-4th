@@ -2007,7 +2007,7 @@ MonoBehaviour:
   gameSoundsSource1: {fileID: 1960853316}
   backgroundMusicSource: {fileID: 1799318459}
   playerWalkingSound: {fileID: 8300000, guid: 0bf19e4fe2a225e4385ab1da6a5ba146, type: 3}
-  playerReceiveDMGSound: {fileID: 8300000, guid: 813a0abcfe202a046885853ac8db0ef7,
+  playerReceiveDMGSound: {fileID: 8300000, guid: 16dcec48a1f89cd4bada30411f7e85de,
     type: 3}
   playerDeathSound: {fileID: 8300000, guid: cb9298d5551a1574e9ae09e27fdcb579, type: 3}
   levelCompletedSound: {fileID: 8300000, guid: 4bcfe2ec1a25faf48bae1d91363ace9f, type: 3}
@@ -2233,12 +2233,12 @@ MonoBehaviour:
   enemy: {fileID: 1274296355230512, guid: 8f4a40a8c25c7114bb8dc337ff56a618, type: 2}
   player: {fileID: 1030897085117854, guid: fc5ecad71559d0743b4b651f955c1743, type: 2}
   enemies:
-  - {fileID: 1399617490887500, guid: a3951870c34e0cc4cb97aadb0c86ce05, type: 2}
-  - {fileID: 1168384520179402, guid: 00ab9928936e12547a232e5653d67810, type: 2}
+  - {fileID: 1346078572075726, guid: 5a1766948f07305489936e05f097359c, type: 2}
   - {fileID: 1774636978968972, guid: e9c7ee77ccd4f384fbf191b870a5319c, type: 2}
   - {fileID: 1819902452607788, guid: c74bcf9f83a7e194abc496793b0278fd, type: 2}
-  - {fileID: 1346078572075726, guid: 5a1766948f07305489936e05f097359c, type: 2}
   - {fileID: 1643865232249472, guid: e59170d18a9a9cf48a5ec5e376110a14, type: 2}
+  - {fileID: 1399617490887500, guid: a3951870c34e0cc4cb97aadb0c86ce05, type: 2}
+  - {fileID: 1168384520179402, guid: 00ab9928936e12547a232e5653d67810, type: 2}
 --- !u!1001 &592002885
 Prefab:
   m_ObjectHideFlags: 0

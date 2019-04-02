@@ -18,6 +18,8 @@ public class PlayerEventsManager : MonoBehaviour
 
     private GameplayEventsManager eventsManager;
 
+    public GameObject explosion;
+
     void Start ()
     {
         Time.timeScale = 1.0f;
@@ -58,6 +60,8 @@ public class PlayerEventsManager : MonoBehaviour
             
             //deal dmg after touching the enemy
             eventsManager.DealDMG();
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            StartCoroutine(DestroyExplosion());
             StartOrCheckpoint();
         }
         //sets the respawn position a reached checkpoints position and disables the collider
@@ -83,5 +87,15 @@ public class PlayerEventsManager : MonoBehaviour
             //teleport to some position after touching the enemy
             transform.position = transform.position + new Vector3(startPosition.x - transform.position.x, startPosition.y - transform.position.y, 0);
             }
+    }
+
+    public IEnumerator DestroyExplosion()
+    {
+        yield return new WaitForSeconds(1f);
+        GameObject[] explosions = GameObject.FindGameObjectsWithTag("Explosion");
+         for (int i = 0; i < explosions.Length; i++)
+         {
+             Destroy(explosions[i]);
+        }
     }
 }

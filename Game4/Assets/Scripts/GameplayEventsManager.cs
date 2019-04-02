@@ -53,13 +53,6 @@ public class GameplayEventsManager : MonoBehaviour {
     private bool isScoreSaved;
     private bool isPaused = false;
 
-
-    void Awake()
-    {
-        // ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
-        // DontDestroyOnLoad(ScoreHolder);
-    }
-
     void Start()
     {
         Time.timeScale = 1.0f;
