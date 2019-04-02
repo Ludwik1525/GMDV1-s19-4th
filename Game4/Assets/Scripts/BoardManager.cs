@@ -82,8 +82,8 @@ public class BoardManager : MonoBehaviour {
                         {       
                                 
                                 float x = toInstantiate.transform.localScale.x / 2;
-                                float y = (rows * 100) / 2;
-                                float scale = rows * 100;
+                                float y = (rows * 10) / 2;
+                                float scale = rows * 8;
 
                                 Vector3 rightOuter = new Vector2(x,y);
                                 Vector3 leftOuter = new Vector2(-x,y);
