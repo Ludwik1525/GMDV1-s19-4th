@@ -28,18 +28,14 @@ public class BoardManager : MonoBehaviour {
         //might use this
         // public Count checkpoints = new Count (1, 2);                      //Lower and upper limit for our random number of walls per level.
 
-        //Prefab containers
-        // public GameObject floorTiles;                                 //Array of floor prefabs.
+       
         public GameObject start,checkpoint,end, outerWallStart,outerWallSide;
         
         public GameObject enemy, player;
         
         public GameObject [] enemies;
-                                        //Array of enemy prefabs.
-        // public GameObject outerWallTiles;                             //Array of outer tile prefabs.
 
-         private Transform boardHolder,boardContainer, enemyContainer;                                  //A variable to store a reference to the transform of our Board object.
-        private List <Vector3> gridPositions = new List <Vector3> ();   //A list of possible locations to place tiles.
+         private Transform boardContainer, enemyContainer;                                  //A variable to store a reference to the transform of our Board object.
 
         public void setRows(int row){
                 rows = row;
@@ -77,7 +73,7 @@ public class BoardManager : MonoBehaviour {
                         {
                                 toInstantiate = checkpoint;
                         } 
-                        else if (rows <= 10 && i == (rows / 2))
+                        else if (rows <= 10 && i == (rows / 2) + 1)
                         {
                                 toInstantiate = checkpoint;
                         }
@@ -96,19 +92,19 @@ public class BoardManager : MonoBehaviour {
                                 
                                 //2nd instantiaten of outer side walls
                                 GameObject instance =
-                        Instantiate (toInstantiate, rightOuter,Quaternion.identity) as GameObject;
-                        instance.transform.SetParent(boardContainer);
+                                Instantiate (toInstantiate, rightOuter,Quaternion.identity) as GameObject;
+                                instance.transform.SetParent(boardContainer);
 
-                        instance =
-                        Instantiate (toInstantiate, leftOuter,Quaternion.identity) as GameObject;
-                        instance.transform.SetParent(boardContainer);
+                                instance =
+                                Instantiate (toInstantiate, leftOuter,Quaternion.identity) as GameObject;
+                                instance.transform.SetParent(boardContainer);
 
-                        toInstantiate = null;
+                                toInstantiate = null;
                         }
                         else 
-                        {                        
+                                                
                         toInstantiate = enemy;
-                        }
+                        
 
                         if(toInstantiate)
                         {
@@ -143,6 +139,7 @@ public class BoardManager : MonoBehaviour {
                         }
                 }
         }
+
 
        void Start(){
                setupBoard();

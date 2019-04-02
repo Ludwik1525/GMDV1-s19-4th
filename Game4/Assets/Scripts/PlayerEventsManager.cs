@@ -56,9 +56,9 @@ public class PlayerEventsManager : MonoBehaviour
                 source.PlayOneShot(deathSound);
             }
             
-            StartOrCheckpoint();
             //deal dmg after touching the enemy
             eventsManager.DealDMG();
+            StartOrCheckpoint();
         }
         //sets the respawn position a reached checkpoints position and disables the collider
         

@@ -56,8 +56,8 @@ public class GameplayEventsManager : MonoBehaviour {
 
     void Awake()
     {
-        ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
-        DontDestroyOnLoad(ScoreHolder);
+        // ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
+        // DontDestroyOnLoad(ScoreHolder);
     }
 
     void Start()
@@ -151,6 +151,7 @@ public class GameplayEventsManager : MonoBehaviour {
 
         sliderMusic.value = 0.1f;
 
+        //Should perhaps be handled in different place - it's own method
         if(SceneManager.GetActiveScene().buildIndex == 1)
         {
             
@@ -218,8 +219,8 @@ public class GameplayEventsManager : MonoBehaviour {
 
     public void SaveScore()
     {
-        if(!isScoreSaved)
-        {
+        // if(!isScoreSaved)
+        // {
             if(nameInput.text!="")
             {
                 savedInfo.SetActive(true);
@@ -235,15 +236,17 @@ public class GameplayEventsManager : MonoBehaviour {
                 {
                     HighscoreHolder.highscore3.Add(nameInput.text, CalculateScore());
                 }
-                isScoreSaved = true;
-            }
+            //     isScoreSaved = true;
+            // }
         }
     }
 
     private void OnApplicationQuit()
     {
+        
         List<KeyValuePair<string, float>> lvl1scores = HighscoreHolder.highscore1.ToList();
 
+            print(HighscoreHolder.highscore1 + "what the fudge");
         for (int i = 0; i < HighscoreHolder.highscore1.ToArray().Length; i++)
         {
             PlayerPrefs.SetString("score1Name" + i ,lvl1scores[i].Key);
@@ -265,7 +268,7 @@ public class GameplayEventsManager : MonoBehaviour {
             PlayerPrefs.SetString("score3Name" + i, lvl3scores[i].Key);
             PlayerPrefs.SetFloat("score3Value" + i, lvl3scores[i].Value);
         }
-
+        
         PlayerPrefs.Save();
     }
 

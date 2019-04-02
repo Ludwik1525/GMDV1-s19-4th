@@ -9,8 +9,10 @@ using Debug = UnityEngine.Debug;
 [System.Serializable]
 public class GameManager : MonoBehaviour
 {
+    //singleton pattern 
     public static GameManager instance = null;
     private string configFilePath = "Assets/Resources/config.JSON";
+    private string dataInJson;
 
     [Range(1f, 4f)]
     public float playerSpeed;
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        //singleton pattern
         if(instance == null){
             instance = this;
         }else if (instance != this)
@@ -54,10 +57,8 @@ public class GameManager : MonoBehaviour
     {
         if (File.Exists(path))
         {
-            string dataInJson = File.ReadAllText(path);
-            string loadedData = JsonUtility.FromJson<string>(dataInJson);
+            dataInJson = File.ReadAllText(path);           
 
-            Debug.Log(dataInJson);
         }
         else
         {
