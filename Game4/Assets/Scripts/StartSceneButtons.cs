@@ -263,7 +263,8 @@ public class StartSceneButtons : MonoBehaviour
         PlayerPrefs.Save();
         LockLVL2();
         LockLVL3();
-        LoadProgress();
+
+        ResetScore();
     }
 
     public void LoadProgress()
@@ -304,20 +305,29 @@ public class StartSceneButtons : MonoBehaviour
 
         for (int i = 0; i < HighscoreHolder.highscore1.ToArray().Length; i++)
         {
-            scores1.text += lvl1scores[i];
-            scores1.text += "\n";
+            if(lvl1scores[i].Key != "")
+            {
+                scores1.text += lvl1scores[i];
+                scores1.text += "\n";
+            }
         }
 
         for (int i = 0; i < HighscoreHolder.highscore2.ToArray().Length; i++)
         {
-            scores2.text += lvl2scores[i];
-            scores2.text += "\n";
+            if (lvl2scores[i].Key != "")
+            {
+                scores2.text += lvl2scores[i];
+                scores2.text += "\n";
+            }
         }
 
         for (int i = 0; i < HighscoreHolder.highscore3.ToArray().Length; i++)
         {
-            scores3.text += lvl3scores[i];
-            scores3.text += "\n";
+            if (lvl3scores[i].Key != "")
+            {
+                scores3.text += lvl3scores[i];
+                scores3.text += "\n";
+            }
         }
     }
 
@@ -370,6 +380,38 @@ public class StartSceneButtons : MonoBehaviour
         }
 
         HighscoreHolder.highscore3 = scores;
+    }
+
+    void ResetScore()
+    {
+
+        for (int i = 0; i < HighscoreHolder.highscore1.ToArray().Length; i++)
+        {
+            PlayerPrefs.SetString("score1Name" + i, "");
+            PlayerPrefs.SetFloat("score1Value" + i, 0);
+        }
+
+        for (int i = 0; i < HighscoreHolder.highscore2.ToArray().Length; i++)
+        {
+            PlayerPrefs.SetString("score2Name" + i, "");
+            PlayerPrefs.SetFloat("score2Value" + i, 0);
+        }
+
+        for (int i = 0; i < HighscoreHolder.highscore3.ToArray().Length; i++)
+        {
+            PlayerPrefs.SetString("score3Name" + i, "");
+            PlayerPrefs.SetFloat("score3Value" + i, 0);
+        }
+
+        scores1.text = "";
+        scores2.text = "";
+        scores3.text = "";
+
+        HighscoreHolder.highscore1.Clear();
+        HighscoreHolder.highscore2.Clear();
+        HighscoreHolder.highscore3.Clear();
+
+        PlayerPrefs.Save();
     }
 
 
