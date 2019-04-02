@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/Rome/Documents/Unity projects/Github Repos/Gmd/Catter 4th/GMDV1-s19-4th/Game4/Build/CatSplash.exe
+C:/Users/mmich/Desktop/GMD/Game4/Build/CatSplash.exe
 SceneListBegin?
 Assets/Scenes/StartScene.unity
 Assets/Scenes/Level1.unity

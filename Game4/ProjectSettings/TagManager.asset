@@ -16,6 +16,7 @@ TagManager:
   - EnemyRow
   - StartRow
   - Checkpoint
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using System;
+using UnityEngine.SceneManagement;
 
 public class BoardManager : MonoBehaviour {
 	
@@ -81,9 +82,9 @@ public class BoardManager : MonoBehaviour {
                         else if (i == rows +1)
                         {       
                                 
-                                float x = toInstantiate.transform.localScale.x / 2;
-                                float y = (rows * 100) / 2;
-                                float scale = rows * 100;
+                                float x = toInstantiate.transform.localScale.x*3;
+                                float y = (rows * 10) / 2;
+                                float scale = rows * 8;
 
                                 Vector3 rightOuter = new Vector2(x,y);
                                 Vector3 leftOuter = new Vector2(-x,y);
@@ -101,9 +102,10 @@ public class BoardManager : MonoBehaviour {
 
                                 toInstantiate = null;
                         }
-                        else 
-                                                
-                        toInstantiate = enemy;
+                        else
+                        {
+                                toInstantiate = enemy;
+                        }
                         
 
                         if(toInstantiate)
@@ -126,18 +128,25 @@ public class BoardManager : MonoBehaviour {
                 enemyContainer = new GameObject("EnemyContainer").transform;
                 GameObject toInstantiate = null;
                 foreach(Transform enemyRow in boardContainer)
-                {                       
-                        if(enemyRow.CompareTag("EnemyRow")){
-                                toInstantiate = enemies[Random.Range(0,enemies.Length)];
-                        GameObject instance = Instantiate(toInstantiate,enemyRow.position,Quaternion.identity) as GameObject;
-                        instance.transform.SetParent(enemyContainer);
-                        }
-                        else if (enemyRow.CompareTag("StartRow"))
+                {
+
+                    for (int j = 0; j < SceneManager.GetActiveScene().buildIndex * 2; j++)
+                    {
+                        if (enemyRow.CompareTag("EnemyRow"))
                         {
-                                toInstantiate = player;
-                        GameObject instance = Instantiate(toInstantiate,enemyRow.position,Quaternion.identity) as GameObject;
+                            toInstantiate = enemies[Random.Range(0, enemies.Length)];
+                            GameObject instance =
+                                Instantiate(toInstantiate, new Vector3(Random.Range(-250f, 250f), enemyRow.position.y, 0), Quaternion.identity) as GameObject;
+                            instance.transform.SetParent(enemyContainer);
                         }
-                }
+                    }
+                    if (enemyRow.CompareTag("StartRow"))
+                    {
+                        toInstantiate = player;
+                        GameObject instance =
+                            Instantiate(toInstantiate, enemyRow.position+new Vector3(0, 50, 0), Quaternion.identity) as GameObject;
+                    }
+        }
         }
 
 
