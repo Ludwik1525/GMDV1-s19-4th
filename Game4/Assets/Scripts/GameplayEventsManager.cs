@@ -42,7 +42,7 @@ public class GameplayEventsManager : MonoBehaviour {
     private GameManager manager;
     private TimeCounter timeCounter;
 
-    private string filePath = "Assets/Resources/config.JSON";
+    private string filePath = "CatSplash_Data/Resources/config/config.JSON";
 
 
     [HideInInspector]

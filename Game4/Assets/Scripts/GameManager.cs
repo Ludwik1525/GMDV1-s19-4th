@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 {
     //singleton pattern 
     public static GameManager instance = null;
-    private string configFilePath = "Assets/Resources/config.JSON";
+    private string configFilePath = "CatSplash_Data/Resources/config/config.JSON";
     private string dataInJson;
 
     private Speed speed;
