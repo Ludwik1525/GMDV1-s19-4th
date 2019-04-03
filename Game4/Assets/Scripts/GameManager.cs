@@ -14,19 +14,21 @@ public class GameManager : MonoBehaviour
     private string configFilePath = "Assets/Resources/config.JSON";
     private string dataInJson;
 
-    [Range(1f, 4f)]
+    private Speed speed;
+
+    [HideInInspector]
     public float playerSpeed;
-    [Range(1f, 4f)]
+    [HideInInspector]
     public float wormsSpeed;
-    [Range(1f, 3f)]
+    [HideInInspector]
     public float golemSpeed;
-    [Range(1f, 6f)]
+    [HideInInspector]
     public float blackmanSpeed;
-    [Range(1f, 5f)]
+    [HideInInspector]
     public float skeletonSpeed;
-    [Range(3f, 8f)]
+    [HideInInspector]
     public float flameSpeed;
-    [Range(1f, 6f)]
+    [HideInInspector]
     public float spiderSpeed;
 
     public AudioSource gameSoundsSource;
@@ -46,28 +48,47 @@ public class GameManager : MonoBehaviour
             instance = this;
         }else if (instance != this)
             Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
 
     }
-    void Start () {
-		LoadFile(configFilePath);
+    void Start ()
+    {  speed=new Speed();
+        LoadFile(configFilePath);
 	}
-    
+
     public void LoadFile(string path)
     {
-        if (File.Exists(path))
-        {
-            dataInJson = File.ReadAllText(path);           
+            dataInJson = File.ReadAllText(path);
+            speed = JsonUtility.FromJson<Speed>(dataInJson);
 
-        }
-        else
-        {
-            Debug.LogError("File broken!");
-        }
+            playerSpeed = speed.playerSpeed;
+            wormsSpeed = speed.wormsSpeed;
+            golemSpeed = speed.golemSpeed;
+            blackmanSpeed = speed.blackmanSpeed;
+            skeletonSpeed = speed.blackmanSpeed;
+            flameSpeed = speed.flameSpeed;
+            spiderSpeed = speed.spiderSpeed;
+
+            print(playerSpeed);
+
+    }
+
+    public void SaveFile(string path)
+    {
+        speed.blackmanSpeed = blackmanSpeed;
+        speed.flameSpeed = flameSpeed;
+        speed.golemSpeed = golemSpeed;
+        speed.playerSpeed = playerSpeed;
+        speed.spiderSpeed = spiderSpeed;
+        speed.wormsSpeed = wormsSpeed;
+        speed.skeletonSpeed = skeletonSpeed;
+
+        dataInJson = JsonUtility.ToJson(speed, false);
+        File.WriteAllText(path, dataInJson);
     }
 
 
 
-    
+
+
 
 }

@@ -42,6 +42,8 @@ public class GameplayEventsManager : MonoBehaviour {
     private GameManager manager;
     private TimeCounter timeCounter;
 
+    private string filePath = "Assets/Resources/config.JSON";
+
 
     [HideInInspector]
     public int lives;
@@ -52,13 +54,6 @@ public class GameplayEventsManager : MonoBehaviour {
 
     private bool isScoreSaved;
     private bool isPaused = false;
-
-
-    void Awake()
-    {
-        // ScoreHolder = GameObject.FindGameObjectWithTag("HighscoreHolder");
-        // DontDestroyOnLoad(ScoreHolder);
-    }
 
     void Start()
     {
@@ -80,8 +75,8 @@ public class GameplayEventsManager : MonoBehaviour {
         scoreValue.gameObject.SetActive(false);
         savedInfo.SetActive(false);
 
-        sliderMusic.value = 0.5f;
-        sliderSounds.value = 0.5f;
+        sliderMusic.value = 0.6f;
+        sliderSounds.value = 0.6f;
 
         resume.onClick.AddListener(Resume);
         menu.onClick.AddListener(GoToMenu);
@@ -98,6 +93,8 @@ public class GameplayEventsManager : MonoBehaviour {
 
     void Update()
     {
+
+       // manager.SaveFile(filePath);
         timePassed = int.Parse(timeCounter.counterValue.text);
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -148,12 +145,10 @@ public class GameplayEventsManager : MonoBehaviour {
         scoreValue.gameObject.SetActive(true);
         scoreValue.text = "" + CalculateScore();
 
-        sliderMusic.value = 0.1f;
-
-        //Should perhaps be handled in different place - it's own method
+        sliderMusic.value = 0.05f;
+        
         if(SceneManager.GetActiveScene().buildIndex == 1)
         {
-            
             PlayerPrefs.SetInt("lvl2unlocked", 1);
             PlayerPrefs.Save();
         }
@@ -162,7 +157,6 @@ public class GameplayEventsManager : MonoBehaviour {
             PlayerPrefs.SetInt("lvl3unlocked", 1);
             PlayerPrefs.Save();
         }
-        
 
         Time.timeScale = 0.0f;
     }
@@ -174,7 +168,7 @@ public class GameplayEventsManager : MonoBehaviour {
         menu.gameObject.SetActive(true);
         tryAgain.gameObject.SetActive(true);
 
-        sliderMusic.value = 0.1f;
+        sliderMusic.value = 0.05f;
 
         Time.timeScale = 0.0f;
     }
@@ -211,7 +205,7 @@ public class GameplayEventsManager : MonoBehaviour {
 
     public float CalculateScore()
     {
-        float result = 10000000f * (float)lives*(float)(Math.PI/7.7) * (1f / (float)timePassed);
+        float result = 10000000f * (float)lives*(float)(Math.PI/7) * (1f / (float)timePassed);
 
         return result;
     }

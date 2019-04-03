@@ -7,24 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class BoardManager : MonoBehaviour {
 	
-        [Serializable]
-        public class Count
-        {
-            public int minimum;             //Minimum value for our Count class.
-            public int maximum;             //Maximum value for our Count class.
-            
-            
-            //Assignment constructor.
-            public Count (int min, int max)
-            {
-                minimum = min;
-                maximum = max;
-            }
-        }
 
 
         //static int to make it belong to the class and not the specific instance of it. Should make rows persist right?
-        public static int rows = 21;
+        public static int rows;
         
         //might use this
         // public Count checkpoints = new Count (1, 2);                      //Lower and upper limit for our random number of walls per level.
@@ -36,16 +22,29 @@ public class BoardManager : MonoBehaviour {
         
         public GameObject [] enemies;
 
-         private Transform boardContainer, enemyContainer;                                  //A variable to store a reference to the transform of our Board object.
+        private Transform boardContainer, enemyContainer;                                  //A variable to store a reference to the transform of our Board object.
 
-             void Start()
-         {
-             setupBoard();
-         }
+        private bool isBoardSet = false;
 
-        public void setRows(int row){
-                rows = row;
+        void OnEnable()
+        {
+            isBoardSet = false;
+        }
+
+        void Update()
+        {
+            if (!isBoardSet)
+            {
+                rows = SceneManager.GetActiveScene().buildIndex * 6 + 1;
+                setupBoard();
+                isBoardSet = true;
             }
+        }
+
+        void OnDisable()
+        {
+            isBoardSet = false;
+        }
 
         public void setupBoard(int NextLevel){
 
@@ -53,10 +52,9 @@ public class BoardManager : MonoBehaviour {
                 boardContainer = new GameObject ("BoardContainer").transform;
                 float heightOfRow = 0;
                 int midpoint = rows / 2;
-                int testingStuff = rows / 3;
                 
 
-                        GameObject toInstantiate = null;
+                GameObject toInstantiate = null;
                 for(int i = 0; i <= rows + 1; i++)
                 {
                         
@@ -134,11 +132,11 @@ public class BoardManager : MonoBehaviour {
                 foreach(Transform enemyRow in boardContainer)
                 {
 
-                    for (int j = 0; j < SceneManager.GetActiveScene().buildIndex * 2; j++)
+                    for (int j = 0; j < 2; j++)
                     {
                         if (enemyRow.CompareTag("EnemyRow"))
                         {
-                            toInstantiate = enemies[Random.Range(0, enemies.Length)];
+                            toInstantiate = enemies[Random.Range(0, SceneManager.GetActiveScene().buildIndex+3)];
                             GameObject instance =
                                 Instantiate(toInstantiate, new Vector3(Random.Range(-250f, 250f), enemyRow.position.y, 0), Quaternion.identity) as GameObject;
                             instance.transform.SetParent(enemyContainer);
@@ -152,10 +150,6 @@ public class BoardManager : MonoBehaviour {
                     }
         }
         }
-
-
-      
-
 }
 
 
