@@ -35,7 +35,7 @@ public class BoardManager : MonoBehaviour {
         {
             if (!isBoardSet)
             {
-                rows = SceneManager.GetActiveScene().buildIndex * 6 + 1;
+                rows = SceneManager.GetActiveScene().buildIndex * 10 + 1;
                 setupBoard();
                 isBoardSet = true;
             }
