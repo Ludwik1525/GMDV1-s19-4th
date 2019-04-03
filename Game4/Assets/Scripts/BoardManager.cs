@@ -46,7 +46,7 @@ public class BoardManager : MonoBehaviour {
             isBoardSet = false;
         }
 
-        public void setupBoard(int NextLevel){
+        public void setupBoard(){
 
                 //Container for board pieces, keep the order!
                 boardContainer = new GameObject ("BoardContainer").transform;
@@ -122,7 +122,6 @@ public class BoardManager : MonoBehaviour {
                         
                 }
                 //difficulty setting
-                rows = NextLevel * rows;
                 Spawn(); 
         }
 

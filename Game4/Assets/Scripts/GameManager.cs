@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
             wormsSpeed = speed.wormsSpeed;
             golemSpeed = speed.golemSpeed;
             blackmanSpeed = speed.blackmanSpeed;
-            skeletonSpeed = speed.blackmanSpeed;
+            skeletonSpeed = speed.skeletonSpeed;
             flameSpeed = speed.flameSpeed;
             spiderSpeed = speed.spiderSpeed;
 
@@ -72,19 +72,19 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void SaveFile(string path)
-    {
-        speed.blackmanSpeed = blackmanSpeed;
-        speed.flameSpeed = flameSpeed;
-        speed.golemSpeed = golemSpeed;
-        speed.playerSpeed = playerSpeed;
-        speed.spiderSpeed = spiderSpeed;
-        speed.wormsSpeed = wormsSpeed;
-        speed.skeletonSpeed = skeletonSpeed;
+    //public void SaveFile(string path)
+    //{
+    //    speed.blackmanSpeed = blackmanSpeed;
+    //    speed.flameSpeed = flameSpeed;
+    //    speed.golemSpeed = golemSpeed;
+    //    speed.playerSpeed = playerSpeed;
+    //    speed.spiderSpeed = spiderSpeed;
+    //    speed.wormsSpeed = wormsSpeed;
+    //    speed.skeletonSpeed = skeletonSpeed;
 
-        dataInJson = JsonUtility.ToJson(speed, false);
-        File.WriteAllText(path, dataInJson);
-    }
+    //    dataInJson = JsonUtility.ToJson(speed, false);
+    //    File.WriteAllText(path, dataInJson);
+    //}
 
 
 
