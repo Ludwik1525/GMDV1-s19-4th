@@ -94,7 +94,7 @@ public class GameplayEventsManager : MonoBehaviour {
     void Update()
     {
 
-        manager.SaveFile(filePath);
+       // manager.SaveFile(filePath);
         timePassed = int.Parse(timeCounter.counterValue.text);
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -146,11 +146,9 @@ public class GameplayEventsManager : MonoBehaviour {
         scoreValue.text = "" + CalculateScore();
 
         sliderMusic.value = 0.05f;
-
-        //Should perhaps be handled in different place - it's own method
+        
         if(SceneManager.GetActiveScene().buildIndex == 1)
         {
-            
             PlayerPrefs.SetInt("lvl2unlocked", 1);
             PlayerPrefs.Save();
         }
@@ -159,7 +157,6 @@ public class GameplayEventsManager : MonoBehaviour {
             PlayerPrefs.SetInt("lvl3unlocked", 1);
             PlayerPrefs.Save();
         }
-        
 
         Time.timeScale = 0.0f;
     }

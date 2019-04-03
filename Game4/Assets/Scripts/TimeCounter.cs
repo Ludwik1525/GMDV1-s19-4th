@@ -7,7 +7,6 @@ public class TimeCounter : MonoBehaviour
 {
 
     public Text counterValue;
-    private bool firstCall = true;
 
 	void Start ()
     {

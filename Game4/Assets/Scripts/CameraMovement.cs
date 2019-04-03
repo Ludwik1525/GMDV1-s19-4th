@@ -5,14 +5,11 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour {
 
     private GameObject player;
-    private Vector3 offset;
 
     void Update()
     {
         if(GameObject.FindGameObjectWithTag("Player")){          
         player=GameObject.FindGameObjectWithTag("Player");
-
-        offset = transform.position - player.transform.position;
         }
     }
 
