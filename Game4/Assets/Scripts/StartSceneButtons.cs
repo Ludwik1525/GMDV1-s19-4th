@@ -12,6 +12,8 @@ public class StartSceneButtons : MonoBehaviour
     public Button highscoreButton;
     public Button controlsButton;
     public Button resetButton;
+    public Button confirmButton;
+    public Button cancelButton;
     public Button exitButton;
 
     public Button backButton;
@@ -33,6 +35,7 @@ public class StartSceneButtons : MonoBehaviour
     public GameObject level1Menu;
     public GameObject level2Menu;
     public GameObject level3Menu;
+    public GameObject resetMenu;
 
     public GameObject paddlock2;
     public GameObject paddlock3;
@@ -80,14 +83,19 @@ public class StartSceneButtons : MonoBehaviour
         scores1.gameObject.SetActive(false);
         scores2.gameObject.SetActive(false);
         scores3.gameObject.SetActive(false);
+        confirmButton.gameObject.SetActive(false);
+        cancelButton.gameObject.SetActive(false);
+        resetMenu.gameObject.SetActive(false);
 
         newGameButton.onClick.AddListener(ChooseLevel);
         highscoreButton.onClick.AddListener(OpenHighScore);
         controlsButton.onClick.AddListener(OpenControls);
-        resetButton.onClick.AddListener(ResetProgress);
         exitButton.onClick.AddListener(ExitGame);
         backButton.onClick.AddListener(BackToMenu);
         nextButton.onClick.AddListener(NextHighscore);
+        resetButton.onClick.AddListener(OpenResetMenu);
+        cancelButton.onClick.AddListener(CloseResetMenu);
+        confirmButton.onClick.AddListener(ResetProgress);
 
         level1.onClick.AddListener(StartLVL1);
         level2.onClick.AddListener(StartLVL2);
@@ -111,6 +119,7 @@ public class StartSceneButtons : MonoBehaviour
         levelSelection.gameObject.SetActive(true);
         highscoreMenu.gameObject.SetActive(false);
         controlsMenu.gameObject.SetActive(false);
+        resetMenu.gameObject.SetActive(false);
         backButton.gameObject.SetActive(true);
     }
 
@@ -129,6 +138,7 @@ public class StartSceneButtons : MonoBehaviour
         levelSelection.gameObject.SetActive(false);
         highscoreMenu.gameObject.SetActive(true);
         controlsMenu.gameObject.SetActive(false);
+        resetMenu.gameObject.SetActive(false);
         backButton.gameObject.SetActive(true);
         level1Menu.gameObject.SetActive(true);
         nextButton.gameObject.SetActive(true);
@@ -142,6 +152,7 @@ public class StartSceneButtons : MonoBehaviour
         menuButtons.gameObject.SetActive(false);
         levelSelection.gameObject.SetActive(false);
         highscoreMenu.gameObject.SetActive(false);
+        resetMenu.gameObject.SetActive(false);
         controlsMenu.gameObject.SetActive(true);
         backButton.gameObject.SetActive(true);
     }
@@ -154,6 +165,7 @@ public class StartSceneButtons : MonoBehaviour
         levelSelection.gameObject.SetActive(false);
         highscoreMenu.gameObject.SetActive(false);
         controlsMenu.gameObject.SetActive(false);
+        resetMenu.gameObject.SetActive(false);
         backButton.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(false);
         level1Menu.gameObject.SetActive(false);
@@ -254,8 +266,27 @@ public class StartSceneButtons : MonoBehaviour
         }
     }
 
+    void OpenResetMenu()
+    {
+        source.PlayOneShot(buttonClick);
+        menuButtons.gameObject.SetActive(false);
+        confirmButton.gameObject.SetActive(true);
+        cancelButton.gameObject.SetActive(true);
+        resetMenu.gameObject.SetActive(true);
+    }
+
+    void CloseResetMenu()
+    {
+        source.PlayOneShot(buttonClick);
+        menuButtons.gameObject.SetActive(true);
+        confirmButton.gameObject.SetActive(false);
+        cancelButton.gameObject.SetActive(false);
+        resetMenu.gameObject.SetActive(false);
+    }
+
     public void ResetProgress()
     {
+        source.PlayOneShot(buttonClick);
         PlayerPrefs.SetInt("lvl2unlocked", 0);
         PlayerPrefs.Save();
 
@@ -265,6 +296,10 @@ public class StartSceneButtons : MonoBehaviour
         LockLVL3();
 
         ResetScore();
+        menuButtons.gameObject.SetActive(true);
+        confirmButton.gameObject.SetActive(false);
+        cancelButton.gameObject.SetActive(false);
+        resetMenu.gameObject.SetActive(false);
     }
 
     public void LoadProgress()

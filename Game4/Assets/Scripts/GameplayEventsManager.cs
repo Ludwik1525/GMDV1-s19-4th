@@ -75,8 +75,8 @@ public class GameplayEventsManager : MonoBehaviour {
         scoreValue.gameObject.SetActive(false);
         savedInfo.SetActive(false);
 
-        sliderMusic.value = 0.5f;
-        sliderSounds.value = 0.5f;
+        sliderMusic.value = 0.6f;
+        sliderSounds.value = 0.6f;
 
         resume.onClick.AddListener(Resume);
         menu.onClick.AddListener(GoToMenu);
@@ -145,7 +145,7 @@ public class GameplayEventsManager : MonoBehaviour {
         scoreValue.gameObject.SetActive(true);
         scoreValue.text = "" + CalculateScore();
 
-        sliderMusic.value = 0.1f;
+        sliderMusic.value = 0.05f;
 
         //Should perhaps be handled in different place - it's own method
         if(SceneManager.GetActiveScene().buildIndex == 1)
@@ -171,7 +171,7 @@ public class GameplayEventsManager : MonoBehaviour {
         menu.gameObject.SetActive(true);
         tryAgain.gameObject.SetActive(true);
 
-        sliderMusic.value = 0.1f;
+        sliderMusic.value = 0.05f;
 
         Time.timeScale = 0.0f;
     }
@@ -208,7 +208,7 @@ public class GameplayEventsManager : MonoBehaviour {
 
     public float CalculateScore()
     {
-        float result = 10000000f * (float)lives*(float)(Math.PI/7.7) * (1f / (float)timePassed);
+        float result = 10000000f * (float)lives*(float)(Math.PI/7) * (1f / (float)timePassed);
 
         return result;
     }
